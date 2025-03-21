@@ -1,0 +1,6 @@
+# app/kafka/__init__.py
+from .consumer import KafkaConsumer
+from .producer import KafkaProducer
+from .topic_manager import KafkaTopicManager
+
+__all__ = ["KafkaConsumer", "KafkaProducer", "KafkaTopicManager"]
