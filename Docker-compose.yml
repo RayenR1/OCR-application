@@ -1,4 +1,4 @@
-version: '3.8'
+
 
 services:
   zookeeper:
@@ -39,7 +39,7 @@ services:
     image: obsidiandynamics/kafdrop
     container_name: kafdrop
     environment:
-      KAFKA_BROKER_CONNECT: "kafka:9092"
+      KAFKA_BROKER_CONNECT: "kafka:9093"
     ports:
       - "9000:9000"
     depends_on:
@@ -47,6 +47,46 @@ services:
     networks:
       - kafka-net
 
+  classification_service:
+    build:
+      context: ./classification_service
+      dockerfile: Dockerfile
+    container_name: classification_service
+    depends_on:
+      - kafka
+      - mlflow
+    ports:
+      - "8000:8000"
+    environment:
+      - KAFKA_BOOTSTRAP_SERVERS=kafka:9093
+    networks:
+      - kafka-net
+
+  image_filter_service:
+    build:
+      context: ./image_filter_service
+      dockerfile: Dockerfile
+    container_name: image_filter_service
+    depends_on:
+      - kafka
+      - classification_service
+    ports:
+      - "8001:8001"
+    environment:
+      - KAFKA_BOOTSTRAP_SERVERS=kafka:9093
+    networks:
+      - kafka-net
+
+  mlflow:
+    image: ghcr.io/mlflow/mlflow:latest  # Image officielle MLflow
+    container_name: mlflow
+    command: mlflow ui --host 0.0.0.0 --port 5000  # Lancer l'UI MLflow
+    ports:
+      - "5000:5000"  # Exposer le port 5000
+    volumes:
+      - ./mlflow-data:/mlflow  # Persister les données MLflow (facultatif)
+    networks:
+      - kafka-net
 
 networks:
   kafka-net:
