@@ -5,7 +5,7 @@ import os
 load_dotenv()
 
 # Kafka settings
-KAFKA_BOOTSTRAP_SERVERS = os.getenv("KAFKA_BOOTSTRAP_SERVERS", "localhost:9092")
+KAFKA_BOOTSTRAP_SERVERS = os.getenv("KAFKA_BOOTSTRAP_SERVERS", "localhost:9093") ### changer ca a 9093 a la fin
 INPUT_TOPIC = "Input-Images"
 CLASSIFIED_TOPICS = {
     "Bulltin soin": "Classified-BS",
@@ -18,7 +18,7 @@ CLASSIFIED_TOPICS = {
 ALL_TOPICS = [INPUT_TOPIC] + list(CLASSIFIED_TOPICS.values())
 
 # MLflow settings
-MLFLOW_TRACKING_URI = os.getenv("MLFLOW_TRACKING_URI", "http://localhost:5000")
+MLFLOW_TRACKING_URI = os.getenv("MLFLOW_TRACKING_URI", "http://mlflow:5000")
 MODEL_NAME = "YOLOv11-Classifier"
 
 # Model path
