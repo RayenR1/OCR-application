@@ -18,7 +18,7 @@ CLASSIFIED_TOPICS = {
 ALL_TOPICS = [INPUT_TOPIC] + list(CLASSIFIED_TOPICS.values())
 
 # MLflow settings
-MLFLOW_TRACKING_URI = os.getenv("MLFLOW_TRACKING_URI", "http://mlflow:5000")
+MLFLOW_TRACKING_URI = os.getenv("MLFLOW_TRACKING_URI", "http://localhost:5000")
 MODEL_NAME = "YOLOv11-Classifier"
 
 # Model path

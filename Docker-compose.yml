@@ -59,6 +59,7 @@ services:
       - "8000:8000"
     environment:
       - KAFKA_BOOTSTRAP_SERVERS=kafka:9093
+      - MLFLOW_TRACKING_URI=http://mlflow:5000
     networks:
       - kafka-net
 

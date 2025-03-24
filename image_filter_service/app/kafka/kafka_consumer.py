@@ -3,7 +3,9 @@ from confluent_kafka import Consumer
 import cv2
 import numpy as np
 from app.config import KAFKA_BOOTSTRAP_SERVERS, CLASSIFIED_TOPICS
+import logging
 
+logger = logging.getLogger(__name__)
 class KafkaConsumer:
     def __init__(self):
         self.consumer = Consumer({
@@ -13,6 +15,7 @@ class KafkaConsumer:
         })
         # S'abonner à tous les topics classifiés
         self.topics = list(CLASSIFIED_TOPICS.values())
+        logger.info(f"Subscribing to topics: {self.topics}")
         self.consumer.subscribe(self.topics)
 
         # Créer un dictionnaire pour mapper les topics à leurs classes
@@ -22,8 +25,10 @@ class KafkaConsumer:
         while True:
             msg = self.consumer.poll(timeout=1.0)
             if msg is None:
+                logger.debug("No message received from Kafka")
                 continue
             if msg.error():
+                logger.error(f"Consumer error: {msg.error()}")
                 print(f"Consumer error: {msg.error()}")
                 continue
 
@@ -31,11 +36,15 @@ class KafkaConsumer:
             image_data = msg.value()
             topic = msg.topic()
             class_name = self.topic_to_class.get(topic, "autre")  # Déterminer la classe
+            logger.info(f"Received message from topic {topic} with class {class_name}")
 
             nparr = np.frombuffer(image_data, np.uint8)
             image = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
             if image is not None:
+                logger.info(f"Successfully decoded image for class {class_name}")
                 yield image, class_name
-
+            else:
+                logger.error(f"Failed to decode image from Kafka message in topic {topic}")
     def __del__(self):
+        logger.info("Closing Kafka consumer")
         self.consumer.close()

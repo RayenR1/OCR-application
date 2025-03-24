@@ -6,9 +6,9 @@ KAFKA_BOOTSTRAP_SERVERS = os.getenv("KAFKA_BOOTSTRAP_SERVERS", "localhost:9093")
 
 # Input topics (classified images from the previous service)
 CLASSIFIED_TOPICS = {
-    "BS": "classified-BS",
-    "ordonnance": "classified-ordonnance",
-    "facture": "classified-facture"
+    "BS": "Classified-BS",
+    "ordonnance": "Classified-ordonnance",
+    "facture": "Classified-facture"
 }
 
 # Output topics (filtered images)
