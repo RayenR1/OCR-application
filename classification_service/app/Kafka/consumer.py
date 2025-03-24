@@ -13,9 +13,9 @@ class KafkaConsumer:
         })
         self.consumer.subscribe([INPUT_TOPIC])
 
-    def consume(self):
+    def consume(self, timeout=1.0):
         while True:
-            msg = self.consumer.poll(1.0)
+            msg = self.consumer.poll(timeout_ms=int(timeout * 1000))
             if msg is None:
                 continue
             if msg.error():
