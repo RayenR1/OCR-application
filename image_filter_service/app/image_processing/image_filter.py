@@ -1,4 +1,5 @@
 # EyeQ/image-filter-service/app/image_processing/image_filter.py
+#github:@RayenR1 | linkedin :Rayen Jlassi
 import cv2
 import numpy as np
 import albumentations as A

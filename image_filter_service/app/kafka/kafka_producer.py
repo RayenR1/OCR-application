@@ -1,4 +1,5 @@
 # app/kafka/kafka_producer.py
+#github:@RayenR1 | linkedin :Rayen Jlassi
 from confluent_kafka import Producer
 import cv2
 from app.config import KAFKA_BOOTSTRAP_SERVERS, FILTERED_TOPICS

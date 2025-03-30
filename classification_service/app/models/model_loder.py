@@ -1,4 +1,5 @@
 # app/models/model_loader.py
+#github:@RayenR1 | linkedin :Rayen Jlassi
 from ultralytics import YOLO
 
 class ModelLoader:

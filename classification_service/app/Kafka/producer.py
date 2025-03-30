@@ -1,4 +1,5 @@
 # app/kafka/producer.py
+#github:@RayenR1 | linkedin :Rayen Jlassi
 from confluent_kafka import Producer
 from app.config import KAFKA_BOOTSTRAP_SERVERS, CLASSIFIED_TOPICS
 import cv2
