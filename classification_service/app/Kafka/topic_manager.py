@@ -1,4 +1,5 @@
 # app/kafka/topic_manager.py
+#github:@RayenR1 | linkedin :Rayen Jlassi
 from confluent_kafka.admin import AdminClient, NewTopic
 from app.config import KAFKA_BOOTSTRAP_SERVERS, ALL_TOPICS
 

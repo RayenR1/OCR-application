@@ -1,3 +1,5 @@
+github:@RayenR1 | linkedin :Rayen Jlassi
+this service is done By *Rayen Jlassi* in all his steps
 # YOLO Classification Service
 
 This project implements a FastAPI service for classifying images using a YOLOv11 model, integrated with Kafka for asynchronous processing and MLflow for model versioning.

@@ -1,4 +1,5 @@
 # app/kafka/kafka_consumer.py
+#github:@RayenR1 | linkedin :Rayen Jlassi
 from confluent_kafka import Consumer
 import cv2
 import numpy as np

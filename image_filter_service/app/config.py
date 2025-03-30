@@ -1,4 +1,5 @@
 # app/config.py
+#github:@RayenR1 | linkedin :Rayen Jlassi
 import os
 
 # Kafka configuration

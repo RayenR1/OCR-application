@@ -1,4 +1,5 @@
 # app/models/classifier.py
+#github:@RayenR1 | linkedin :Rayen Jlassi
 import cv2
 import numpy as np
 

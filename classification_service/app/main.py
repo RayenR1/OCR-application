@@ -1,4 +1,5 @@
 #app/main.py
+#github:@RayenR1 | linkedin :Rayen Jlassi
 from fastapi import FastAPI, File, UploadFile, HTTPException
 from app.models import ModelLoader, YOLOClassifier
 from app.Kafka import KafkaConsumer, KafkaProducer, KafkaTopicManager

@@ -1,4 +1,5 @@
 # app/kafka/consumer.py
+#github:@RayenR1 | linkedin :Rayen Jlassi
 from confluent_kafka import Consumer, KafkaError
 from app.config import KAFKA_BOOTSTRAP_SERVERS, INPUT_TOPIC
 import cv2
