@@ -7,6 +7,6 @@ numpy==1.26.4
 opencv-python==4.10.0.84
 Pillow==10.4.0
 matplotlib==3.9.2
-paddlepaddle-gpu==2.6.1.post120
+paddlepaddle-gpu==2.6.1
 paddleocr==2.8.1
 mlflow==2.15.0
