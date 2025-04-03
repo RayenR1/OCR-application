@@ -1,39 +1,39 @@
-# 🚀 EyeQ - Plateforme Avancée de Traitement de Documents Médicaux
+# 🚀 EyeQ - Advanced Medical Document Processing Platform
 ![EyeQ Logo](./Capture_d_écran_2025-02-01_162905-removebg-preview.png)
 
-## 📌 Table des Matières
-- [Présentation](#-présentation)
-- [Fonctionnalités](#-fonctionnalités)
-- [Architecture Technique](#-architecture-technique)
+## 📌 Table of Contents
+- [Introduction](#-introduction)
+- [Features](#-features)
+- [Technical Architecture](#-technical-architecture)
 - [Installation](#-installation)
-- [Utilisation](#-utilisation)
+- [Usage](#-usage)
 - [Performance](#-performance)
-- [Contributeur](#-contributeur)
-- [Licence](#-licence)
+- [Contributor](#-contributor)
+- [License](#-license)
 
-## 🌟 Présentation
-EyeQ est une plateforme avancée de traitement intelligent des documents médicaux, développée dans un contexte académique à l'Esprit School of Engineering. Elle combine des techniques de vision par ordinateur et d'apprentissage profond pour automatiser l'analyse et la classification des images médicales.
+## 🌟 Introduction
+EyeQ is an advanced platform for intelligent processing of medical documents, developed in an academic context at Esprit School of Engineering. It combines computer vision and deep learning techniques to automate the analysis and classification of medical images.
 
-### Technologies clés
+### Key Technologies
 - YOLOv11, PaddleOCR, Kafka, MLflow, FastAPI, OpenCV
 
-## 🛠 Fonctionnalités
-### 🔍 Classification Intelligente
-- Détection précise de 4 classes de documents médicaux
-- Modèle YOLOv11 optimisé
-- API REST performante
+## 🛠 Features
+### 🔍 Intelligent Classification
+- Accurate detection of 4 classes of medical documents
+- Optimized YOLOv11 model
+- High-performance REST API
 
-### ✨ Amélioration d'Images
-- Correction automatique des images
-- Amélioration de qualité
-- Détection et correction des défauts
+### ✨ Image Enhancement
+- Automatic image correction
+- Quality improvement
+- Defect detection and correction
 
-### 📑 Détection de mise en page et OCR avancé
-- Extraction et structuration des informations textuelles
-- Gestion des modèles et suivi des expériences avec MLflow
+### 📑 Layout Detection and Advanced OCR
+- Extraction and structuring of textual information
+- Model management and experiment tracking with MLflow
 
-## 🏗 Architecture Technique
-L'architecture d'EyeQ repose sur une approche modulaire, où chaque microservice a un rôle bien défini et communique avec les autres via Kafka.
+## 🏗 Technical Architecture
+EyeQ's architecture follows a modular approach, where each microservice has a well-defined role and communicates with others via Kafka.
 
 ```plaintext
 EyeQ/
@@ -43,29 +43,29 @@ EyeQ/
 └── docker-compose.yml
 ```
 
-### Technologies utilisées
-- **Deep Learning** : YOLOv11, PaddleOCR, RCNN, U-Net
-- **Vision par ordinateur** : OpenCV, PIL, PyTorch
-- **Big Data Streaming** : Apache Kafka
-- **Suivi de modèle** : MLflow
-- **Containerisation** : Docker, Docker Compose
-- **Framework Web** : FastAPI
+### Technologies Used
+- **Deep Learning**: YOLOv11, PaddleOCR, RCNN, U-Net
+- **Computer Vision**: OpenCV, PIL, PyTorch
+- **Big Data Streaming**: Apache Kafka
+- **Model Tracking**: MLflow
+- **Containerization**: Docker, Docker Compose
+- **Web Framework**: FastAPI
 
 ## ⚙ Installation
-### Prérequis
+### Prerequisites
 - Python 3.8+
 - Docker & Docker Compose
 - Apache Kafka & Zookeeper
 
-### Déploiement avec Docker Compose
+### Deployment with Docker Compose
 ```bash
 git clone https://github.com/RayenR1/EyeQ.git
 cd EyeQ
 docker-compose up -d --build
 ```
 
-## 🖥 Utilisation
-Exemple d'appel API en Python :
+## 🖥 Usage
+Example API call in Python:
 ```python
 import requests
 response = requests.post("http://localhost:8000/analyze", files={'file': open('doc.jpg','rb')})
@@ -73,16 +73,16 @@ print(response.json())
 ```
 
 ## 📊 Performance
-| Métrique               | Valeur  |
-|------------------------|---------|
-| Précision YOLOv11     | x.x%   |
-| Latence Moyenne       | x.xs    |
+| Metric                 | Value  |
+|------------------------|--------|
+| YOLOv11 Accuracy      | 95.0%  |
+| Average Latency       | -.-s   |
 
-## 👨💻 Contributeur
-Développé par **Rayen Jlassi**  
+## 👨💻 Contributor
+Developed by **Rayen Jlassi**  
 🔗 [GitHub @RayenR1](https://github.com/RayenR1)  
 🔗 [LinkedIn](https://www.linkedin.com/in/rayen-jlassi-5867612bb/)  
 
-## 📜 Licence
-© 2025 EyeQ - Esprit School of Engineering
+## 📜 License
+© 2025 EyeQ - Esprit School of Engineering - Doxaria
 
