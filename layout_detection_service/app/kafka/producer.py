@@ -1,5 +1,5 @@
 # app/kafka/producer.py
-#github:@RayenR1 | linkedin :Rayen Jlassi
+# github:@RayenR1 | linkedin :Rayen Jlassi
 from confluent_kafka import Producer
 from app.config import OUTPUT_TOPIC, KAFKA_BOOTSTRAP_SERVERS
 import json
@@ -21,6 +21,10 @@ class KafkaProducer:
             print(f"[INFO] Message envoyé au topic {msg.topic()}")
 
     def send_layout(self, image, layout_data):
+        """
+        Envoie l'image et les données de layout (image_type, tables, typed_text, lines)
+        au topic de sortie.
+        """
         message_id = str(uuid.uuid4())
         layout_data["message_id"] = message_id
 

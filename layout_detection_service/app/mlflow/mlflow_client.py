@@ -1,5 +1,5 @@
 # app/mlflow/mlflow_client.py
-#github:@RayenR1 | linkedin :Rayen Jlassi
+# github:@RayenR1 | linkedin :Rayen Jlassi
 from mlflow.tracking import MlflowClient
 from app.config import MLFLOW_TRACKING_URI
 
@@ -17,11 +17,11 @@ class MLflowClient:
             experiment_id = experiment.experiment_id
         return experiment_id
 
-    def log_layout_metrics(self, image_type, num_tables, num_typed_text, num_handwritten_text):
+    def log_layout_metrics(self, image_type, num_tables, num_typed_text, num_lines):
         """Enregistre les métriques de segmentation dans MLflow."""
         with self.client.start_run(experiment_id=self.experiment_id):
             self.client.log_param("image_type", image_type)
             self.client.log_metric("num_tables", num_tables)
             self.client.log_metric("num_typed_text", num_typed_text)
-            self.client.log_metric("num_handwritten_text", num_handwritten_text)
+            self.client.log_metric("num_lines", num_lines)
             print(f"[INFO] Métriques enregistrées dans MLflow pour {image_type}")

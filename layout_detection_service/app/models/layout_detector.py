@@ -1,11 +1,26 @@
 # app/models/layout_detector.py
-#github:@RayenR1 | linkedin :Rayen Jlassi
+# github:@RayenR1 | linkedin :Rayen Jlassi
 import numpy as np
 import cv2
 from PIL import Image
 import re
 from paddleocr import PaddleOCR
 import json
+from craft_text_detector import (
+    read_image,
+    load_craftnet_model,
+    load_refinenet_model,
+    get_prediction,
+    export_detected_regions
+)
+from app.config import (
+    CRAFT_LONG_SIZE,
+    MIN_BOX_WIDTH,
+    MIN_BOX_HEIGHT,
+    MIN_BOX_AREA,
+    LINE_HEIGHT_TOLERANCE,
+    MIN_LINE_WIDTH
+)
 
 # Configuration OCR
 OCR_ENGINE = PaddleOCR(
@@ -124,14 +139,6 @@ def find_joints(contours, vertical, horizontal):
 def contains_arabic(text):
     return bool(re.search("[\u0600-\u06FF]", text))
 
-def is_likely_handwritten(text, box, image):
-    width = box[2][0] - box[0][0]
-    height = box[2][1] - box[0][1]
-    aspect_ratio = width / height if height > 0 else 0
-    if aspect_ratio < 0.5 or aspect_ratio > 10 or len(text) < 3:
-        return True
-    return False
-
 def is_likely_field_name(text):
     text = text.strip().upper()
     word_count = len(text.split())
@@ -183,38 +190,49 @@ def preprocess_image(image, mode):
     else:
         raise ValueError(f"Mode {mode} non supporté.")
 
-def boxes_overlap(box1, box2, threshold=0.5):
-    x1 = min(point[0] for point in box1)
-    y1 = min(point[1] for point in box1)
-    x2 = max(point[0] for point in box1)
-    y2 = max(point[1] for point in box1)
-
-    if len(box2) == 4 and isinstance(box2[0], list):
-        x1_p = min(point[0] for point in box2)
-        y1_p = min(point[1] for point in box2)
-        x2_p = max(point[0] for point in box2)
-        y2_p = max(point[1] for point in box2)
+def get_box_rect(box):
+    """Convertit une boîte en rectangle (x, y, w, h)"""
+    if isinstance(box, list):
+        x_coords = [point[0] for point in box]
+        y_coords = [point[1] for point in box]
     else:
-        x1_p, y1_p, x2_p, y2_p = box2
+        x_coords = box[:, 0]
+        y_coords = box[:, 1]
+    
+    x = min(x_coords)
+    y = min(y_coords)
+    w = max(x_coords) - x
+    h = max(y_coords) - y
+    return x, y, w, h
 
-    xi1 = max(x1, x1_p)
-    yi1 = max(y1, y1_p)
-    xi2 = min(x2, x2_p)
-    yi2 = min(y2, y2_p)
+def is_valid_box(box):
+    """Vérifie si une boîte est assez grande"""
+    _, _, w, h = get_box_rect(box)
+    area = w * h
+    return (w >= MIN_BOX_WIDTH and 
+            h >= MIN_BOX_HEIGHT and 
+            area >= MIN_BOX_AREA)
 
-    inter_width = max(0, xi2 - xi1)
-    inter_height = max(0, yi2 - yi1)
-    inter_area = inter_width * inter_height
+def boxes_overlap(box1, box2, threshold=0.5):
+    """Vérifie si deux boîtes se chevauchent."""
+    x1, y1, w1, h1 = get_box_rect(box1)
+    x2, y2, w2, h2 = get_box_rect(box2)
+    
+    xi1 = max(x1, x2)
+    yi1 = max(y1, y2)
+    xi2 = min(x1 + w1, x2 + w2)
+    yi2 = min(y1 + h1, y2 + h2)
 
-    box1_area = (x2 - x1) * (y2 - y1)
-    box2_area = (x2_p - x1_p) * (y2_p - y1_p)
+    inter_area = max(0, xi2 - xi1) * max(0, yi2 - yi1)
+    box1_area = w1 * h1
+    box2_area = w2 * h2
     union_area = box1_area + box2_area - inter_area
 
     iou = inter_area / union_area if union_area > 0 else 0
     return iou > threshold
 
 def extract_text_and_layout(image):
-    modes = ["grayscale", "rgb", "binary", "contrast"]
+    modes = ["rgb", "contrast"]
     extracted_data = []
 
     for mode in modes:
@@ -240,9 +258,9 @@ def extract_text_and_layout(image):
                     continue
                 if contains_arabic(text):
                     continue
-                if is_likely_handwritten(text, box, preprocessed_img):
-                    continue
                 if len(text) < 2:
+                    continue
+                if not is_valid_box(box):
                     continue
 
                 overlaps = False
@@ -252,7 +270,7 @@ def extract_text_and_layout(image):
                         break
 
                 if not overlaps:
-                    extracted_data.append({"text": text, "box": box})
+                    extracted_data.append({"text": text, "box": box, "source": "paddle"})
 
     print(f"[INFO] Nombre total de boîtes détectées : {len(extracted_data)}")
     return extracted_data
@@ -265,54 +283,182 @@ def filter_field_names(extracted_data):
             filtered_data.append(item)
     return filtered_data
 
-# -------- FONCTIONS POUR TEXTE MANUSCRIT --------
-def thresholding(image):
-    img_gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-    ret, thresh = cv2.threshold(img_gray, 80, 255, cv2.THRESH_BINARY_INV)
-    return thresh
+def ultra_precise_adjustment(boxes, original_size, network_size, long_size):
+    orig_h, orig_w = original_size
+    net_h, net_w = network_size
+    
+    scale_x = orig_w / net_w
+    scale_y = orig_h / net_h
+    
+    size_ratio = long_size / max(net_w, net_h)
+    
+    aspect_ratio_correction = np.sqrt((scale_x * scale_y) / (size_ratio**2))
+    
+    adjusted_boxes = []
+    for box in boxes:
+        box = np.array(box, dtype=np.float32)
+        if box.shape != (4, 2):
+            continue
+            
+        box[:, 0] = box[:, 0] * scale_x / aspect_ratio_correction
+        box[:, 1] = box[:, 1] * scale_y / aspect_ratio_correction
+        
+        box[:, 0] *= 1.0015
+        box[:, 1] *= 0.9985
+        
+        box[:, 0] = np.clip(box[:, 0], 0, orig_w - 1)
+        box[:, 1] = np.clip(box[:, 1], 0, orig_h - 1)
+        
+        adjusted_boxes.append(box)
+    
+    return adjusted_boxes
 
-def detect_handwritten_text(image, thresh_img):
-    kernel = np.ones((3, 85), np.uint8)
-    dilated = cv2.dilate(thresh_img, kernel, iterations=1)
-    (contours, _) = cv2.findContours(dilated.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
-    sorted_contours_lines = sorted(contours, key=lambda ctr: cv2.boundingRect(ctr)[1])
-
-    kernel2 = np.ones((3, 15), np.uint8)
-    dilated2 = cv2.dilate(thresh_img, kernel2, iterations=1)
-    words_list = []
-
-    for line in sorted_contours_lines:
-        x, y, w, h = cv2.boundingRect(line)
-        roi_line = dilated2[y:y+h, x:x+w]
-        (cnt, _) = cv2.findContours(roi_line.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
-        sorted_contour_words = sorted(cnt, key=lambda cntr: cv2.boundingRect(cntr)[0])
-
-        for word in sorted_contour_words:
-            if cv2.contourArea(word) < 50:
+def detect_text_with_craft(image, existing_boxes):
+    orig_h, orig_w = image.shape[:2]
+    
+    craft_net = load_craftnet_model(cuda=False)
+    refine_net = load_refinenet_model(cuda=False)
+    
+    prediction_result = get_prediction(
+        image=image,
+        craft_net=craft_net,
+        refine_net=refine_net,
+        text_threshold=0.7,
+        link_threshold=0.45,
+        low_text=0.4,
+        cuda=False,
+        long_size=CRAFT_LONG_SIZE,
+        poly=False
+    )
+    
+    score_map = prediction_result["heatmaps"]["text_score_heatmap"]
+    net_h, net_w = score_map.shape[:2]
+    
+    raw_boxes = prediction_result["boxes"]
+    valid_boxes = [b for b in raw_boxes if isinstance(b, np.ndarray) and b.shape == (4, 2)]
+    
+    craft_data = []
+    
+    if valid_boxes:
+        final_boxes = ultra_precise_adjustment(
+            valid_boxes,
+            (orig_h, orig_w),
+            (net_h, net_w),
+            CRAFT_LONG_SIZE
+        )
+        
+        for box in final_boxes:
+            if not is_valid_box(box):
                 continue
-            x2, y2, w2, h2 = cv2.boundingRect(word)
-            words_list.append([x+x2, y+y2, x+x2+w2, y+y2+h2])
-    return words_list
+                
+            overlaps = False
+            for existing in existing_boxes:
+                if boxes_overlap(existing["box"], box):
+                    overlaps = True
+                    break
+            
+            if not overlaps:
+                box_points = box.tolist()
+                craft_data.append({
+                    "box": box_points,
+                    "text": "",
+                    "source": "craft"
+                })
+    
+    return craft_data
 
-# -------- FONCTIONS D'ANNOTATION ET SAUVEGARDE --------
-def is_inside_table(box, table_bbox):
-    box_center_x = (box[0][0] + box[2][0]) / 2
-    box_center_y = (box[0][1] + box[2][1]) / 2
-    for key in table_bbox.keys():
-        x1, y2, x2, y1 = key
-        if x1 <= box_center_x <= x2 and y1 <= box_center_y <= y2:
+def group_boxes_into_lines(boxes, image_width, tolerance=LINE_HEIGHT_TOLERANCE):
+    if not boxes:
+        return []
+    
+    box_rects = []
+    for box in boxes:
+        x, y, w, h = get_box_rect(box["box"])
+        center_y = y + h/2
+        box_rects.append((center_y, box))
+    
+    box_rects.sort(key=lambda x: x[0])
+    
+    lines = []
+    current_line = []
+    current_ref_y = box_rects[0][0]
+    
+    for center_y, box in box_rects:
+        if abs(center_y - current_ref_y) <= tolerance:
+            current_line.append(box)
+        else:
+            if current_line:
+                left_boxes = []
+                right_boxes = []
+                for b in current_line:
+                    box_center = (get_box_rect(b["box"])[0] + get_box_rect(b["box"])[2]/2)
+                    if box_center < image_width/2:
+                        left_boxes.append(b)
+                    else:
+                        right_boxes.append(b)
+                
+                if left_boxes:
+                    lines.append(left_boxes)
+                if right_boxes:
+                    lines.append(right_boxes)
+            
+            current_line = [box]
+            current_ref_y = center_y
+    
+    if current_line:
+        left_boxes = []
+        right_boxes = []
+        for b in current_line:
+            box_center = (get_box_rect(b["box"])[0] + get_box_rect(b["box"])[2]/2)
+            if box_center < image_width/2:
+                left_boxes.append(b)
+            else:
+                right_boxes.append(b)
+        
+        if left_boxes:
+            lines.append(left_boxes)
+        if right_boxes:
+            lines.append(right_boxes)
+    
+    return lines
+
+def is_inside_any_table(box, table_bboxes):
+    if not table_bboxes:
+        return False
+    
+    if isinstance(box, list):
+        x_coords = [point[0] for point in box]
+        y_coords = [point[1] for point in box]
+        box_x1 = min(x_coords)
+        box_y1 = min(y_coords)
+        box_x2 = max(x_coords)
+        box_y2 = max(y_coords)
+    else:
+        box_x1, box_y1 = box.min(axis=0)
+        box_x2, box_y2 = box.max(axis=0)
+    
+    box_center_x = (box_x1 + box_x2) / 2
+    box_center_y = (box_y1 + box_y2) / 2
+    
+    for tab_bbox in table_bboxes.keys():
+        tab_x1, tab_y2, tab_x2, tab_y1 = tab_bbox
+        
+        if (tab_x1 <= box_center_x <= tab_x2 and 
+            tab_y1 <= box_center_y <= tab_y2):
             return True
+    
     return False
 
-def save_combined_data(table_bbox, typed_text_data, handwritten_boxes, image_type):
+def save_combined_data(table_bbox, typed_text_data, line_data, image_type):
     serializable_table_bbox = {str(key): value for key, value in table_bbox.items()}
     
     combined_data = {
         "image_type": image_type,
         "tables": serializable_table_bbox,
         "typed_text": typed_text_data,
-        "handwritten_text": handwritten_boxes
+        "lines": line_data
     }
+    
     return combined_data
 
 def detect_layout(image, image_type):
@@ -335,27 +481,35 @@ def detect_layout(image, image_type):
             filtered_table_bbox[tab] = joints
     table_bbox = filtered_table_bbox
 
-    # Étape 2 : Extraction du texte tapé avec OCR
+    # Étape 2 : Extraction du texte tapé avec PaddleOCR
     image_pil = Image.fromarray(cv2.cvtColor(image, cv2.COLOR_BGR2RGB))
     extracted_data = extract_text_and_layout(image_pil)
     typed_text_data = filter_field_names(extracted_data)
 
-    # Étape 3 : Détection du texte manuscrit
-    thresh_img = thresholding(img)
-    handwritten_boxes = detect_handwritten_text(img, thresh_img)
+    # Étape 3 : Détection de texte supplémentaire avec CRAFT
+    craft_data = detect_text_with_craft(img, typed_text_data)
+    
+    # Combiner les résultats
+    combined_text_data = typed_text_data + craft_data
 
-    # Étape 4 : Filtrer les chevauchements entre texte tapé et manuscrit
-    final_handwritten_boxes = []
-    for h_box in handwritten_boxes:
-        overlap = False
-        for t_item in typed_text_data:
-            t_box = t_item["box"]
-            if boxes_overlap(t_box, h_box):
-                overlap = True
-                break
-        if not overlap:
-            final_handwritten_boxes.append(h_box)
+    # Étape 4 : Grouper les boîtes hors tableaux en lignes
+    non_table_boxes = [box for box in combined_text_data if not is_inside_any_table(box["box"], table_bbox)]
+    lines = group_boxes_into_lines(non_table_boxes, image_width)
+    
+    # Préparer les données de lignes pour la sortie
+    line_data = []
+    for line in lines:
+        if not line:
+            continue
+        x_min = int(min(get_box_rect(box["box"])[0] for box in line))
+        y_min = int(min(get_box_rect(box["box"])[1] for box in line))
+        x_max = int(max(get_box_rect(box["box"])[0] + get_box_rect(box["box"])[2] for box in line))
+        y_max = int(max(get_box_rect(box["box"])[1] + get_box_rect(box["box"])[3] for box in line))
+        line_data.append({
+            "boxes": [{"text": box["text"], "coordinates": box["box"]} for box in line],
+            "bounding_box": [x_min, y_min, x_max, y_max]
+        })
 
-    # Retourner les données combinées
-    layout_data = save_combined_data(table_bbox, typed_text_data, final_handwritten_boxes, image_type)
+    # Étape 5 : Préparer les données combinées
+    layout_data = save_combined_data(table_bbox, combined_text_data, line_data, image_type)
     return layout_data

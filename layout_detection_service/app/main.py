@@ -1,5 +1,5 @@
 # app/main.py
-#github:@RayenR1 | linkedin :Rayen Jlassi
+# github:@RayenR1 | linkedin :Rayen Jlassi
 from fastapi import FastAPI, File, UploadFile, HTTPException
 from .kafka.consumer import KafkaConsumer
 from .kafka.producer import KafkaProducer
@@ -31,7 +31,7 @@ def consume_and_process():
                 image_type,
                 len(layout_data["tables"]),
                 len(layout_data["typed_text"]),
-                len(layout_data["handwritten_text"])
+                len(layout_data["lines"])
             )
 
             # Envoyer l'image et le layout au topic de sortie
@@ -65,7 +65,7 @@ async def detect_layout_endpoint(file: UploadFile = File(...), image_type: str =
             image_type,
             len(layout_data["tables"]),
             len(layout_data["typed_text"]),
-            len(layout_data["handwritten_text"])
+            len(layout_data["lines"])
         )
 
         return {"layout_data": layout_data}
