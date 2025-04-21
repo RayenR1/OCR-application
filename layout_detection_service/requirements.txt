@@ -1,18 +1,16 @@
 # requirements.txt
-
 fastapi==0.115.0
 uvicorn==0.30.6
 confluent-kafka==2.5.0
 numpy==1.26.4
 opencv-python==4.10.0.84
 Pillow==10.4.0
-matplotlib==3.9.2
 paddlepaddle-gpu==2.6.1
 paddleocr==2.8.1
 mlflow==2.15.0
+gdown==5.2.0
+python-multipart==0.0.12
 git+https://github.com/RayenR1/CRAFT-pytorch.git
-
-
 
 
 
