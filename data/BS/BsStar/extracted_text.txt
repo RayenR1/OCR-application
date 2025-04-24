@@ -1,0 +1,32 @@
+=== Final Extracted Text (Line by Line, Ordered Top to Bottom, Left to Right) ===
+----------------------------------------------------------------------
+Line 01: 6521905
+Line 02: Bulletin . soins .
+Line 03: Reserve . a o establishment .
+Line 04: Reserve . adherent
+Line 05: Nom et : t tremom . Vadherent
+Line 06: Date . dentree .
+Line 07: Numero cin passeport . HOU ZILFNA 5T.
+Line 08: Date . sortie .
+Line 09: Adresse fadherent
+Line 10: Montent des . fralis .
+Line 11: Matricule cnam . no
+Line 12: Matricule . fiscal .
+Line 13: Matricule Vadherent 27.63 .
+Line 14: Visa et cachet . del Westablissement hospitalier .
+Line 15: Code . prestataire 99
+Line 16: advent conant . 0 Signature .
+Line 17: PRESIDENT PURDICT-2-02-8-03-etc
+Line 18: Reserve . a o Star
+Line 19: Reserve medecins .
+Line 20: Visa 8 cachet . verificateur .
+Line 21: code . rubrique Frais . engages .
+Line 22: Nom ret : prenom . malade
+Line 23: Date . naissance .
+Line 24: sigs .
+Line 25: date ! Honoraires visa . cachet . matricule fiscal .
+Line 26: observations .
+Line 27: chirurgie traitements . specials ,
+Line 28: fIB I fact , jointre . aw bulletin . de soins , Ila nature . de tacte .
+Line 29: pratique .
+----------------------------------------------------------------------

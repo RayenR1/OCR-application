@@ -78,6 +78,7 @@ print(response.json())
 | YOLOv11 Accuracy      | 95.0%  |
 | Average Latency       | -.-s   |
 
+
 ## 👨💻 Contributor
 Developed by **Rayen Jlassi**  
 🔗 [GitHub @RayenR1](https://github.com/RayenR1)  
@@ -88,6 +89,21 @@ Developed by **Rayen Jlassi**
 🔗 [GitHub @]()  
 🔗 [LinkedIn](https://www.linkedin.com/in/skander-kammoun-467257267/)  
 
+**Mariem Mhamdi**  
+🔗 [GitHub @]()  
+🔗 [LinkedIn](https://www.linkedin.com/in/mariem-mhamdi-bb027a254/)  
+
+**ines kammoun**  
+🔗 [GitHub @]()  
+🔗 [LinkedIn](https://www.linkedin.com/in/ineskammoun/)  
+
+**Yassine ben Makhtouf**  
+🔗 [GitHub @]()  
+🔗 [LinkedIn](https://www.linkedin.com/in/yassine-ben-maktouf/) 
+
+**Souhail ltifi**  
+🔗 [GitHub @]()  
+🔗 [LinkedIn]() 
 ## 📜 License
 © 2025 EyeQ - Esprit School of Engineering - Doxaria
 

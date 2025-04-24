@@ -6,10 +6,12 @@ numpy==1.26.4
 opencv-python==4.10.0.84
 Pillow==10.4.0
 paddlepaddle-gpu==2.6.1
-paddleocr==2.8.1
+paddleocr==2.7.0.3
 mlflow==2.15.0
 gdown==5.2.0
 python-multipart==0.0.12
+torchvision
+
 git+https://github.com/RayenR1/CRAFT-pytorch.git
 
 
