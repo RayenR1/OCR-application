@@ -1,32 +1,701 @@
-=== Final Extracted Text (Line by Line, Ordered Top to Bottom, Left to Right) ===
+=== Extracted Text ===
 ----------------------------------------------------------------------
-Line 01: 6521905
-Line 02: Bulletin . soins .
-Line 03: Reserve . a o establishment .
-Line 04: Reserve . adherent
-Line 05: Nom et : t tremom . Vadherent
-Line 06: Date . dentree .
-Line 07: Numero cin passeport . HOU ZILFNA 5T.
-Line 08: Date . sortie .
-Line 09: Adresse fadherent
-Line 10: Montent des . fralis .
-Line 11: Matricule cnam . no
-Line 12: Matricule . fiscal .
-Line 13: Matricule Vadherent 27.63 .
-Line 14: Visa et cachet . del Westablissement hospitalier .
-Line 15: Code . prestataire 99
-Line 16: advent conant . 0 Signature .
-Line 17: PRESIDENT PURDICT-2-02-8-03-etc
-Line 18: Reserve . a o Star
-Line 19: Reserve medecins .
-Line 20: Visa 8 cachet . verificateur .
-Line 21: code . rubrique Frais . engages .
-Line 22: Nom ret : prenom . malade
-Line 23: Date . naissance .
-Line 24: sigs .
-Line 25: date ! Honoraires visa . cachet . matricule fiscal .
-Line 26: observations .
-Line 27: chirurgie traitements . specials ,
-Line 28: fIB I fact , jointre . aw bulletin . de soins , Ila nature . de tacte .
-Line 29: pratique .
+Lines:
+Line 1: champs vide
+  Source: paddle
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_1.png
+
+Line 2: champs vide
+  Source: paddle
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_2.png
+
+Line 3: ةحلاعم ةقا  طب
+  Source: paddle
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_3.png
+
+Line 4: champs vide
+  Source: paddle
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_4.png
+
+Line 5: champs vide
+  Source: paddle
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_5.png
+
+Line 6: Reserve 'adherent طرخنملاب رصاخ
+  Source: paddle
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_6.png
+
+Line 7: ةيئافشتسإلا Rserve ةسسؤملاب tablissement hospitalier رصاخ
+  Source: paddle
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_7.png
+
+Line 8: champs vide
+  Source: paddle
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_8.png
+
+Line 9: Namm Atkinson de Parliament
+  Source: trocr
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_9.png
+
+Line 10: Date dientree
+  Source: trocr
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_10.png
+
+Line 11: champs vide
+  Source: paddle
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_11.png
+
+Line 12: لوخدلا خيرات
+  Source: paddle
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_12.png
+
+Line 13: champs vide
+  Source: paddle
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_13.png
+
+Line 14: NumerousAIN announcement
+  Source: trocr
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_14.png
+
+Line 15: champs vide
+  Source: paddle
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_15.png
+
+Line 16: رفسلا زاوج وأ ةينطولا فيرعتلا ةقاطب ددع ٥ طرخنملا ناونع نيمأتلل ينطولا قودنصلا فرعم ددع
+  Source: paddle
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_16.png
+
+Line 17: جورخلا 
+  Source: paddle
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_17.png
+
+Line 18: Daterde sortie
+  Source: trocr
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_18.png
+
+Line 19: champs vide
+  Source: paddle
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_19.png
+
+Line 20: Adroeconomic Parliament
+  Source: trocr
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_20.png
+
+Line 21: Montant des frais
+  Source: trocr
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_21.png
+
+Line 22: champs vide
+  Source: paddle
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_22.png
+
+Line 23: champs vide
+  Source: paddle
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_23.png
+
+Line 24: champs vide
+  Source: paddle
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_24.png
+
+Line 25: champs vide
+  Source: paddle
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_25.png
+
+Line 26: champs vide
+  Source: paddle
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_26.png
+
+Line 27: ىئابحلا فرعملا
+  Source: paddle
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_27.png
+
+Line 28: champs vide
+  Source: paddle
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_28.png
+
+Line 29: champs vide
+  Source: paddle
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_29.png
+
+Line 30: Maintierfield . Fordbahnant
+  Source: trocr
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_30.png
+
+Line 31: champs vide
+  Source: paddle
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_31.png
+
+Line 32: ةحصملا يفشتسملا متخو ءاضمإ
+  Source: paddle
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_32.png
+
+Line 33: Vice educated in Watahissement hospitalie
+  Source: trocr
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_33.png
+
+Line 34: champs vide
+  Source: paddle
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_34.png
+
+Line 35: Radio aromatators
+  Source: trocr
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_35.png
+
+Line 36: champs vide
+  Source: paddle
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_36.png
+
+Line 37: Signature Adhrent طرخنملا ءاضمإ
+  Source: paddle
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_37.png
+
+Line 38: Conjoint
+  Source: paddle
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_38.png
+
+Line 39: champs vide
+  Source: trocr
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_39.png
+
+Line 40: champs vide
+  Source: paddle
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_40.png
+
+Line 41: champs vide
+  Source: paddle
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_41.png
+
+Line 42: تانيمأتب Reserve STAR راتس صاخ
+  Source: paddle
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_42.png
+
+Line 43: champs vide
+  Source: paddle
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_43.png
+
+Line 44: champs vide
+  Source: paddle
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_44.png
+
+Line 45: champs vide
+  Source: paddle
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_45.png
+
+Line 46: champs vide
+  Source: paddle
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_46.png
+
+Line 47: 1962 63
+  Source: trocr
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_47.png
+
+Line 48: 1903
+  Source: trocr
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_48.png
+
+Line 49: فيراصملا Frais ngag
+  Source: paddle
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_49.png
+
+Line 50: champs vide
+  Source: paddle
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_50.png
+
+Line 51: champs vide
+  Source: paddle
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_51.png
+
+Line 52: champs vide
+  Source: paddle
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_52.png
+
+Line 53: champs vide
+  Source: paddle
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_53.png
+
+Line 54: Other conditions described
+  Source: trocr
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_54.png
+
+Line 55: But the minimum
+  Source: trocr
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_55.png
+
+Line 56: champs vide
+  Source: paddle
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_56.png
+
+Line 57: champs vide
+  Source: paddle
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_57.png
+
+Line 58: champs vide
+  Source: paddle
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_58.png
+
+Line 59: champs vide
+  Source: paddle
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_59.png
+
+Line 60: champs vide
+  Source: paddle
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_60.png
+
+Line 61: champs vide
+  Source: paddle
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_61.png
+
+Line 62: باعتألا Honoraires
+  Source: paddle
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_62.png
+
+Line 63: champs vide
+  Source: paddle
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_63.png
+
+Line 64: champs vide
+  Source: paddle
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_64.png
+
+Line 65: champs vide
+  Source: trocr
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_65.png
+
+Line 66: champs vide
+  Source: paddle
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_66.png
+
+Line 67: ينابجلا فرعملا Matricule
+  Source: paddle
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_67.png
+
+Line 68: atricule
+  Source: paddle
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_68.png
+
+Line 69: Honoraires
+  Source: paddle
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_69.png
+
+Line 70: Date
+  Source: paddle
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_70.png
+
+Line 71: champs vide
+  Source: paddle
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_71.png
+
+Line 72: isa
+  Source: paddle
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_72.png
+
+Line 73: champs vide
+  Source: paddle
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_73.png
+
+Line 74: champs vide
+  Source: paddle
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_74.png
+
+Line 75: Honoraires isa
+  Source: paddle
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_75.png
+
+Line 76: champs vide
+  Source: paddle
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_76.png
+
+Line 77: champs vide
+  Source: paddle
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_77.png
+
+Line 78: champs vide
+  Source: paddle
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_78.png
+
+Line 79: champs vide
+  Source: paddle
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_79.png
+
+Line 80: champs vide
+  Source: paddle
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_80.png
+
+Line 81: champs vide
+  Source: paddle
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_81.png
+
+Line 82: champs vide
+  Source: paddle
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_82.png
+
+Line 83: champs vide
+  Source: trocr
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_83.png
+
+Line 84: champs vide
+  Source: paddle
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_84.png
+
+Line 85: champs vide
+  Source: paddle
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_85.png
+
+Line 86: champs vide
+  Source: paddle
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_86.png
+
+Line 87: champs vide
+  Source: paddle
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_87.png
+
+Line 88: champs vide
+  Source: paddle
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_88.png
+
+Line 89: champs vide
+  Source: paddle
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_89.png
+
+Line 90: champs vide
+  Source: paddle
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_90.png
+
+Line 91: champs vide
+  Source: paddle
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_91.png
+
+Line 92: champs vide
+  Source: paddle
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_92.png
+
+Line 93: champs vide
+  Source: paddle
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_93.png
+
+Line 94: champs vide
+  Source: paddle
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_94.png
+
+Line 95: champs vide
+  Source: paddle
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_95.png
+
+Line 96: champs vide
+  Source: paddle
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_96.png
+
+Line 97: champs vide
+  Source: paddle
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_97.png
+
+Line 98: champs vide
+  Source: paddle
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_98.png
+
+Line 99: champs vide
+  Source: paddle
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_99.png
+
+Line 100: champs vide
+  Source: paddle
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_100.png
+
+Line 101: champs vide
+  Source: paddle
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_101.png
+
+Line 102: champs vide
+  Source: paddle
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_102.png
+
+Line 103: champs vide
+  Source: paddle
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_103.png
+
+Line 104: champs vide
+  Source: paddle
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_104.png
+
+Line 105: champs vide
+  Source: paddle
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_105.png
+
+Line 106: champs vide
+  Source: paddle
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_106.png
+
+Line 107: champs vide
+  Source: paddle
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_107.png
+
+Line 108: champs vide
+  Source: paddle
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_108.png
+
+Line 109: champs vide
+  Source: paddle
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_109.png
+
+Line 110: champs vide
+  Source: paddle
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_110.png
+
+Line 111: champs vide
+  Source: paddle
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_111.png
+
+Line 112: champs vide
+  Source: paddle
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_112.png
+
+Line 113: Dcision responsable لوؤسملا ءاضماو
+  Source: paddle
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_113.png
+
+Line 114: champs vide
+  Source: paddle
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_114.png
+
+Line 115: champs vide
+  Source: paddle
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_115.png
+
+Line 116: champs vide
+  Source: paddle
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_116.png
+
+Line 117: champs vide
+  Source: paddle
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_117.png
+
+Line 118: champs vide
+  Source: paddle
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_118.png
+
+Line 119: champs vide
+  Source: paddle
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_119.png
+
+Line 120: champs vide
+  Source: paddle
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_120.png
+
+Line 121: champs vide
+  Source: paddle
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_121.png
+
+Line 122: champs vide
+  Source: trocr
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_122.png
+
+Line 123: champs vide
+  Source: paddle
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_123.png
+
+Line 124: champs vide
+  Source: paddle
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_124.png
+
+Line 125: champs vide
+  Source: paddle
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_125.png
+
+Line 126: champs vide
+  Source: paddle
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_126.png
+
+Line 127: champs vide
+  Source: paddle
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_127.png
+
+Line 128: champs vide
+  Source: paddle
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_128.png
+
+Line 129: champs vide
+  Source: paddle
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_129.png
+
+Line 130: champs vide
+  Source: paddle
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_130.png
+
+Line 131: champs vide
+  Source: paddle
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_131.png
+
+Line 132: champs vide
+  Source: paddle
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_132.png
+
+Line 133: champs vide
+  Source: paddle
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_133.png
+
+Line 134: Encas de chirurgie on de traitements speciaux .
+  Source: trocr
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_134.png
+
+Line 135: صاخلا جالعلا وا ةحارجلا تالاح
+  Source: paddle
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_135.png
+
+Line 136: faut joindre bulletin
+  Source: paddle
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_136.png
+
+Line 137: ةبحا  اصم بجي
+  Source: paddle
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_137.png
+
+Line 138: 1907
+  Source: trocr
+  Cropped Image: C:\Users\jlassi\Desktop\EyeQ_app\data\BS\BsStar\cropped_lines\line_138.png
+
+Tables:
+Table 1:
+
+Table 2:
+
+
+Typed Text:
+Text 1: 9550521
+Text 2: Réservé á l'adhérent bjaiall ual
+Text 3: Nom et prénom de l'adhérent
+Text 4: Date d'entrée
+Text 5: Numéro CIN ou passeport
+Text 6: Date de sortie
+Text 7: Adresse de l'adhérent
+Text 8: Montant des frais
+Text 9: 5018%4
+Text 10: Matricule CNAM N
+Text 11: SEO
+Text 12: Matricule Fiscal
+Text 13: Matricule de l'adhérent
+Text 14: Visa et cachet de l'établissement hospitalier
+Text 15: Code prestataire
+Text 16: 00
+Text 17: Signature de lAdérent jšáll elá
+Text 18: Adhérent
+Text 19: Conjoint*
+Text 20: Réservé a la STARjlw wlio ual
+Text 21: Visa & cachet du vérificateur
+Text 22: Code rubrique
+Text 23: Frais engagés
+Text 24: Safa
+Text 25: Z A M NI
+Text 26: Nom et prénom du malade
+Text 27: Date de naissance
+Text 28: Date
+Text 29: Honoraires
+Text 30: Désignation
+Text 31: Visa &cachet
+Text 32: Matricule fiscal
+Text 33: 60
+Text 34: Mhamat
+Text 35: MHAMDI
+Text 36: ue
+Text 37: cteur.
+Text 38: stetri
+Text 39: 236165 K/A/P/00
+Text 40: Obe
+Text 41: Spe
+Text 42: GSM
+Text 43: 49.AvHabi
+Text 44: Mazan2 22
+Text 45: Décision et visa duresponsableJgšbl lalg slö
+Text 46: 16/06/23
+Text 47: 32
+Text 48: M.t
+Text 49: oune,
+Text 50: 5968/2
+Text 51: AyBetha
+Text 52: 39725
+Text 53: Tel:
+Text 54: 12628462/w/0/C7960
+Text 55: Total
+Text 56: OBSERVATIONS
+Text 57: pratiqué sous pli confidentiel.
+Text 58: aalleoaalhy
+Text 59: No
+Text 60: 1926
+Text 61: 361651
+Text 62: Bure
+Text 63: Maza
+Text 64: 
+Text 65: 
+Text 66: 
+Text 67: 
+Text 68: 
+Text 69: 
+Text 70: 
+Text 71: 
+Text 72: 
+Text 73: 
+Text 74: 
+Text 75: 
+Text 76: 
+Text 77: 
+Text 78: 
+Text 79: 
+Text 80: 
+Text 81: 
+Text 82: 
+Text 83: 
+Text 84: 
+Text 85: 
+Text 86: 
+Text 87: 
+Text 88: 
+Text 89: 
+Text 90: 
+Text 91: 
+Text 92: 
+Text 93: 
+Text 94: 
+Text 95: 
+Text 96: 
+Text 97: 
+Text 98: 
+Text 99: 
+Text 100: 
+Text 101: 
+Text 102: 
+Text 103: 
+Text 104: 
+Text 105: 
+Text 106: 
+Text 107: 
+Text 108: 
+Text 109: 
+Text 110: 
+Text 111: 
+Text 112: 
+Text 113: 
+Text 114: 
+Text 115: 
+Text 116: 
+Text 117: 
+Text 118: 
+Text 119: 
+Text 120: 
+Text 121: 
+Text 122: 
+Text 123: 
+Text 124: 
+Text 125: 
+Text 126: 
+Text 127: 
+Text 128: 
+Text 129: 
+Text 130: 
+Text 131: 
+Text 132: 
+Text 133: 
+Text 134: 
+Text 135: 
+Text 136: 
+Text 137: 
+Text 138: 
 ----------------------------------------------------------------------

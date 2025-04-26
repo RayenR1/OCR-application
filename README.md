@@ -99,7 +99,7 @@ Developed by **Rayen Jlassi**
 
 **Yassine ben Makhtouf**  
 🔗 [GitHub @]()  
-🔗 [LinkedIn](https://www.linkedin.com/in/yassine-ben-maktouf/) 
+🔗 [LinkedIn]() 
 
 **Souhail ltifi**  
 🔗 [GitHub @]()  
