@@ -1,2 +1,2 @@
-echo "*.rar" >> .gitignore
+echo "data/*.rar" >> .gitignore
 git add .gitignore
