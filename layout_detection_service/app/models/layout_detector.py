@@ -1,5 +1,6 @@
 # app/models/layout_detector.py
 # github:@RayenR1 | linkedin :Rayen Jlassi
+import torch
 import numpy as np
 import cv2
 from PIL import Image

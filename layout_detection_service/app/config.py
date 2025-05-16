@@ -9,8 +9,8 @@ FILTERED_TOPICS = {
 
 OUTPUT_TOPIC = "output-layout"
 
-KAFKA_BOOTSTRAP_SERVERS = "kafka:9093"
-MLFLOW_TRACKING_URI = "http://mlflow:5000"
+KAFKA_BOOTSTRAP_SERVERS = "localhost:9092"
+MLFLOW_TRACKING_URI = "http://localhost:5000"
 
 # Paramètres CRAFT
 CRAFT_LONG_SIZE = 1280

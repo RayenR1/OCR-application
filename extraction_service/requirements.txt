@@ -1,10 +1,4 @@
-fastapi==0.115.0
-uvicorn==0.30.6
-confluent-kafka==2.5.3
-opencv-python==4.10.0.84
-easyocr==1.7.1
-torch==2.4.1
-transformers==4.44.2
-qwen-vl-utils==0.0.4
-numpy==1.26.4
-pillow==10.4.0
+easyocr==1.7.1 ##
+transformers ##
+qwen-vl-utils==0.0.4 ##
+accelerate

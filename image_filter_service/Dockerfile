@@ -1,21 +1,18 @@
-# Dockerfile
-#github:@RayenR1 | linkedin :Rayen Jlassi
-FROM python:3.10.16-slim
+# Dockerfile para image_filter_service
+FROM myproject/base:3.10 AS base
 
 WORKDIR /app
 
-#Installer les dépendances système nécessaires pour OpenCV (libGL.so.1)
-RUN apt-get update && apt-get install -y \
-    libgl1-mesa-glx \
-    libglib2.0-0 \
-    libgl1 \
-    ffmpeg \
-    && rm -rf /var/lib/apt/lists/*
-
+# Etapa de build
+FROM base AS builder
 COPY requirements.txt .
-
 RUN pip install --no-cache-dir -r requirements.txt
 
+# Etapa final
+FROM base
+COPY --from=builder /usr/local/lib/python3.10/site-packages /usr/local/lib/python3.10/site-packages
+COPY --from=builder /usr/local/bin /usr/local/bin
 COPY . .
 
+EXPOSE 8001
 CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8001", "--workers", "3"]

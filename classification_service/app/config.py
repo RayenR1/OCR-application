@@ -6,7 +6,7 @@ import os
 load_dotenv()
 
 # Kafka settings
-KAFKA_BOOTSTRAP_SERVERS = os.getenv("KAFKA_BOOTSTRAP_SERVERS", "localhost:9093") ### changer ca a 9093 a la fin
+KAFKA_BOOTSTRAP_SERVERS = os.getenv("KAFKA_BOOTSTRAP_SERVERS", "localhost:9092") ### changer ca a 9093 a la fin
 INPUT_TOPIC = "Input-Images"
 CLASSIFIED_TOPICS = {
     "Bulltin soin": "Classified-BS",

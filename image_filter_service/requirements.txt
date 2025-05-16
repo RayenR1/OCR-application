@@ -1,9 +1,1 @@
-fastapi==0.115.11 
-uvicorn==0.34.0
-opencv-python==4.11.0.86
-opencv-python-headless==4.11.0.86
-confluent-kafka==2.8.2
-numpy==2.1.1
-python-multipart==0.0.20
-pydantic==2.10.6
 albumentations==2.0.5

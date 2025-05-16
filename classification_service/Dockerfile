@@ -1,24 +1,15 @@
-#github:@RayenR1 | linkedin :Rayen Jlassi
-FROM python:3.10.16-slim
+FROM myproject/torch-base:3.10 AS base
 
 WORKDIR /app
 
-# Installer les dépendances système nécessaires pour OpenCV (libGL.so.1)
-RUN apt-get update && apt-get install -y \
-    libgl1-mesa-glx \
-    libglib2.0-0 \
-    libgl1 \
-    ffmpeg \
-    && rm -rf /var/lib/apt/lists/*
-
+FROM base AS builder
 COPY requirements.txt .
-
 RUN pip install --no-cache-dir -r requirements.txt
 
+FROM base
+COPY --from=builder /usr/local/lib/python3.10/site-packages /usr/local/lib/python3.10/site-packages
+COPY --from=builder /usr/local/bin /usr/local/bin
 COPY . .
 
-# Exposer le port
 EXPOSE 8000
-
-# Commande pour démarrer l'application
 CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]

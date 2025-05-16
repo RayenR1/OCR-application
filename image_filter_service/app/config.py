@@ -3,7 +3,7 @@
 import os
 
 # Kafka configuration
-KAFKA_BOOTSTRAP_SERVERS = os.getenv("KAFKA_BOOTSTRAP_SERVERS", "localhost:9093")  # changer ca a 9093 a la fin 
+KAFKA_BOOTSTRAP_SERVERS = os.getenv("KAFKA_BOOTSTRAP_SERVERS", "localhost:9092")  # changer ca a 9093 a la fin 
 
 # Input topics (classified images from the previous service)
 CLASSIFIED_TOPICS = {

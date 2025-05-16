@@ -14,11 +14,14 @@ logger = logging.getLogger(__name__)
 
 class TextExtractor:
     def __init__(self):
-        # Initialize Qari-OCR model
+        
+     # Initialize Qari-OCR model
         model_name = "NAMAA-Space/Qari-OCR-0.2.2.1-VL-2B-Instruct"
-        self.model = Qwen2VLForConditionalGeneration.from_pretrained(
-            model_name, torch_dtype="auto", device_map="auto"
-        )
+        model = Qwen2VLForConditionalGeneration.from_pretrained(
+        model_name,
+        torch_dtype="auto",
+        device_map="auto"
+            )
         self.processor = AutoProcessor.from_pretrained(model_name)
         self.reader = easyocr.Reader(['ar', 'en'])
         logger.info("Initialized Qari-OCR and EasyOCR")

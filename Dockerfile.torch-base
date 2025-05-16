@@ -1,0 +1,6 @@
+# Dockerfile.torch-base
+FROM myproject/base:3.10
+
+WORKDIR /app
+
+RUN pip install --no-cache-dir torch==2.4.1 torchvision==0.19.1
