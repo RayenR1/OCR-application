@@ -1,40 +1,39 @@
-# app/kafka/producer.py
-# github:@RayenR1 | linkedin:Rayen Jlassi
 from confluent_kafka import Producer
-from app.config import OUTPUT_TOPIC, KAFKA_BOOTSTRAP_SERVERS
+from app.config import settings
 import json
 import logging
+
+logger = logging.getLogger(__name__)
 
 class KafkaProducer:
     def __init__(self):
         conf = {
-            "bootstrap.servers": KAFKA_BOOTSTRAP_SERVERS,
-            "client.id": "extraction_producer",
+            "bootstrap.servers": settings.KAFKA_BOOTSTRAP_SERVERS,
+            "client.id": "ocr-extraction-producer",
+            "message.max.bytes": 10000000,  # 10MB
+            "compression.type": "gzip"
         }
         self.producer = Producer(conf)
 
     def delivery_report(self, err, msg):
         if err is not None:
-            logging.error(f"Échec de l'envoi du message : {err}")
+            logger.error(f"Message delivery failed: {err}")
         else:
-            logging.info(f"Message envoyé au topic {msg.topic()}")
+            logger.debug(f"Message delivered to {msg.topic()} [partition {msg.partition()}]")
 
-    def send_text(self, text_data, message_id):
-        """Send extracted text data to the text_output topic."""
+    def send_result(self, result: Dict[str, Any]):
         try:
-            message = {
-                "message_id": message_id,
-                "text_data": text_data
-            }
-            message_json = json.dumps(message, ensure_ascii=False).encode("utf-8")
+            message_json = json.dumps(result, ensure_ascii=False).encode('utf-8')
+            
             self.producer.produce(
-                OUTPUT_TOPIC,
-                key=message_id.encode("utf-8"),
+                topic=settings.OUTPUT_TOPIC,
+                key=result.get('message_id', '').encode('utf-8'),
                 value=message_json,
-                callback=self.delivery_report,
+                callback=self.delivery_report
             )
+            
             self.producer.flush()
-            logging.info(f"Sent text data with ID {message_id} to {OUTPUT_TOPIC}")
+            logger.info(f"Sent OCR results for message {result.get('message_id')}")
         except Exception as e:
-            logging.error(f"Error sending text data: {str(e)}")
+            logger.error(f"Failed to send results: {str(e)}", exc_info=True)
             raise
