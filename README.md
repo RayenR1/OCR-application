@@ -97,7 +97,7 @@ Developed by **Rayen Jlassi**
 🔗 [LinkedIn](https://www.linkedin.com/in/ineskammoun/)  
 
 **Yassine ben Makhtouf**  
-🔗 [GitHub @](https://github.com/YassineBenMaktouf)  
+🔗 [GitHub @YassineBenMaktouf](https://github.com/YassineBenMaktouf)  
 🔗 [LinkedIn](https://www.linkedin.com/in/yassine-ben-maktouf/) 
 
 **Souhail ltifi**  
