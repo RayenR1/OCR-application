@@ -25,6 +25,7 @@ def consume_and_process():
             logger.info(f"Processing image with layout data: {layout_data}")
             # Extract text using TextExtractor
             result = extractor.extract_text(image, layout_data)
+            logger.info(f"Extract_text result type: {type(result)}, value: {result}")  # Debug log
             message_id = result["message_id"]
             text_data = result["text"]
             # Send extracted text to text_output topic

@@ -14,14 +14,13 @@ logger = logging.getLogger(__name__)
 
 class TextExtractor:
     def __init__(self):
-        
-     # Initialize Qari-OCR model
+        # Initialize Qari-OCR model
         model_name = "NAMAA-Space/Qari-OCR-0.2.2.1-VL-2B-Instruct"
-        model = Qwen2VLForConditionalGeneration.from_pretrained(
-        model_name,
-        torch_dtype="auto",
-        device_map="auto"
-            )
+        self.model = Qwen2VLForConditionalGeneration.from_pretrained(
+            model_name,
+            torch_dtype="auto",
+            device_map="auto"
+        )
         self.processor = AutoProcessor.from_pretrained(model_name)
         self.reader = easyocr.Reader(['ar', 'en'])
         logger.info("Initialized Qari-OCR and EasyOCR")
@@ -44,7 +43,9 @@ class TextExtractor:
         easyocr_results = self.reader.readtext(thresh, detail=1, paragraph=False)
         texts = []
         for (bbox, text, prob) in easyocr_results:
-            if prob < CONFIDENCE_THRESHOLD:
+            # Temporarily lower the confidence threshold to match the notebook
+            if prob < 0.5:  # Lowered from 0.80 to 0.5 for debugging
+                logger.debug(f"Skipping text '{text}' due to low confidence: {prob}")
                 continue
             (top_left, top_right, bottom_right, bottom_left) = bbox
             top_left = (int(top_left[0]), int(top_left[1]))
@@ -85,12 +86,16 @@ class TextExtractor:
                     "text": final_text,
                     "box": [top_left[0], top_left[1], bottom_right[0], bottom_right[1]]
                 })
+        logger.debug(f"Extracted texts from crop: {texts}")
         return texts
 
     def extract_text(self, image, layout_data):
+        logger.info("Starting text extraction")
         image_height, image_width = image.shape[:2]
         lines = layout_data.get("lines", [])
         tables = layout_data.get("tables", {})
+        logger.debug(f"Lines: {lines}")
+        logger.debug(f"Tables: {tables}")
 
         # Identify table headers
         table_headers = {}
@@ -100,22 +105,32 @@ class TextExtractor:
             header_line = None
             min_y_diff = float("inf")
             for i, line in enumerate(lines):
-                line_y_max = line["bounding_box"][3]
+                # Ensure bounding_box is a list of numbers
+                bounding_box = line["bounding_box"]
+                if isinstance(bounding_box, str):
+                    bounding_box = bounding_box.strip("()")  # Remove parentheses if present
+                    bounding_box = [float(x) for x in bounding_box.split(",")]
+                    line["bounding_box"] = bounding_box
+                line_y_max = bounding_box[3]
                 if line_y_max <= table_y_min and table_y_min - line_y_max < min_y_diff:
                     min_y_diff = table_y_min - line_y_max
                     header_line = i
             if header_line is not None and min_y_diff < 50:
                 table_headers[table_key] = header_line
+        logger.debug(f"Table headers: {table_headers}")
 
         # Group lines by left and right side
         midpoint = image_width / 2
         left_lines = [i for i, line in enumerate(lines) if line["bounding_box"][0] < midpoint]
         right_lines = [i for i, line in enumerate(lines) if line["bounding_box"][0] >= midpoint]
+        logger.debug(f"Left lines: {left_lines}")
+        logger.debug(f"Right lines: {right_lines}")
 
         # Process lines
         line_texts = [[] for _ in lines]
         for i, line in enumerate(lines):
             if i in table_headers.values():
+                logger.debug(f"Skipping line {i} as it's a table header")
                 continue
             bbox = line["bounding_box"]
             crop = self.safe_crop(image, bbox)
@@ -126,6 +141,7 @@ class TextExtractor:
                 text["box"][1] += bbox[1]
                 text["box"][3] += bbox[1]
             line_texts[i] = texts
+        logger.debug(f"Line texts: {line_texts}")
 
         # Process tables
         table_texts = {key: [] for key in tables}
@@ -150,35 +166,43 @@ class TextExtractor:
                     text["box"][1] += header_bbox[1]
                     text["box"][3] += header_bbox[1]
                 line_texts[header_idx] = header_texts
+        logger.debug(f"Table texts: {table_texts}")
 
         # Format output
         formatted_text = []
         for line_idx in sorted(left_lines, key=lambda i: lines[i]["bounding_box"][1]):
             if line_idx in table_headers.values():
+                logger.debug(f"Skipping left line {line_idx} as it's a table header")
                 continue
             texts = line_texts[line_idx]
             if not texts:
+                logger.debug(f"No texts for left line {line_idx}")
                 continue
             texts.sort(key=lambda t: t["box"][0])
             line_text = " ".join(t["text"] for t in texts if t["text"].strip())
             if line_text:
                 formatted_text.append(line_text)
+                logger.debug(f"Added left line text: {line_text}")
 
         for line_idx in sorted(right_lines, key=lambda i: lines[i]["bounding_box"][1]):
             if line_idx in table_headers.values():
+                logger.debug(f"Skipping right line {line_idx} as it's a table header")
                 continue
             texts = line_texts[line_idx]
             if not texts:
+                logger.debug(f"No texts for right line {line_idx}")
                 continue
             texts.sort(key=lambda t: -t["box"][0])
             line_text = " ".join(t["text"] for t in texts if t["text"].strip())
             if line_text:
                 formatted_text.append(line_text)
+                logger.debug(f"Added right line text: {line_text}")
 
         for table_key, table_coords in tables.items():
             table_bbox = [float(x) for x in table_key.strip("()").split(",")]
             texts = table_texts[table_key]
             if not texts:
+                logger.debug(f"No texts for table {table_key}")
                 continue
             col_names = []
             col_positions = []
@@ -223,9 +247,18 @@ class TextExtractor:
                                        for i in range(len(max_widths)))
                 formatted_text.append(header_row)
                 formatted_text.append("-" * len(header_row))
+                logger.debug(f"Added table header: {header_row}")
             for row in aligned_rows:
                 row_text = " | ".join(row[i].ljust(max_widths[i]) if i < len(row) else "".ljust(max_widths[i])
                                      for i in range(len(max_widths)))
                 formatted_text.append(row_text)
+                logger.debug(f"Added table row: {row_text}")
 
-        return "\n".join(formatted_text)
+        logger.debug(f"Final formatted text: {formatted_text}")
+        # Return a dictionary instead of a string
+        result = {
+            "message_id": layout_data.get("message_id", ""),
+            "text": "\n".join(formatted_text)
+        }
+        logger.info(f"Extract_text returning: {result}")
+        return result

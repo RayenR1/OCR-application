@@ -29,7 +29,7 @@ class KafkaConsumer:
                 # Decode JSON message
                 message_json = msg.value().decode('utf-8')
                 message = json.loads(message_json)
-                logging.info(f"Raw message: {message}")  # Debug log
+                logging.info(f"Raw message: {message}")
                 # Extract image and layout data with fallback
                 image_base64 = message.get('image', '')
                 layout_data = message.get('layout_data', {})
@@ -46,6 +46,11 @@ class KafkaConsumer:
                 logging.info(f"Decoded image shape: {image.shape}")
                 message_id = layout_data.get('message_id', 'unknown')
                 logging.info(f"Received message ID {message_id} with layout_data: {layout_data}")
+                logging.info(f"layout_data type: {type(layout_data)}")
+                # Add detailed logging for layout_data contents
+                logging.debug(f"layout_data keys: {list(layout_data.keys())}")
+                logging.debug(f"layout_data lines: {layout_data.get('lines', [])}")
+                logging.debug(f"layout_data tables: {layout_data.get('tables', {})}")
                 yield image, layout_data
             except json.JSONDecodeError as e:
                 logging.error(f"Failed to parse JSON message: {str(e)}")
