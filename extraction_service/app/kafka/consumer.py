@@ -1,4 +1,4 @@
-from confluent_kafka import Consumer, KafkaException
+from confluent_kafka import Consumer, KafkaError
 import json
 import logging
 import uuid
@@ -14,8 +14,7 @@ class KafkaConsumer:
             "group.id": "ocr-extraction-group",
             "auto.offset.reset": "earliest",
             "enable.auto.commit": False,
-            "max.poll.interval.ms": 6000000,  # 5 minutes
-            "session.timeout.ms": 10240
+            "max.poll.interval.ms": 86400000  # Set to max allowed value (24 hours)
         }
         self.consumer = Consumer(self.conf)
         self.consumer.subscribe([settings.INPUT_TOPIC])
@@ -36,15 +35,16 @@ class KafkaConsumer:
                 
                 try:
                     message_value = self._decode_message(msg)
-                    logger.debug(f"Received message: {message_value.get('message_id')}")
+                    logger.info(f"Processing full image for message: {message_value.get('message_id')}")
                     
+                    # Process the entire image and get consolidated result
                     result = processing_callback(message_value)
                     
                     if result.get('status') == 'success':
-                        self.consumer.commit(msg)
-                        logger.info(f"Processed message {message_value.get('message_id')}")
+                        self.consumer.commit(asynchronous=False)
+                        logger.info(f"Successfully processed full image for message {message_value.get('message_id')}")
                     else:
-                        logger.error(f"Failed to process message {message_value.get('message_id')}: {result.get('error')}")
+                        logger.error(f"Failed to process full image for message {message_value.get('message_id')}")
                         
                 except Exception as e:
                     logger.error(f"Message processing failed: {str(e)}", exc_info=True)
@@ -53,43 +53,34 @@ class KafkaConsumer:
         except KeyboardInterrupt:
             logger.info("Consumer stopped by user")
         except Exception as e:
-            logger.error(f"Consumer error: {str(e)}", exc_info=True)
+            logger.error(f"Consumer fatal error: {str(e)}", exc_info=True)
         finally:
-            self.consumer.close()
-            logger.info("Consumer closed")
+            self.close()
 
     def _decode_message(self, msg):
         try:
-            # Essayer de décoder en JSON d'abord
             message = json.loads(msg.value().decode('utf-8'))
-        except (UnicodeDecodeError, json.JSONDecodeError):
-            # Si échec, traiter comme message binaire
-            message = {
+            message.setdefault('message_id', str(uuid.uuid4()))
+            return message
+        except Exception as e:
+            logger.error(f"Message decoding failed: {str(e)}")
+            return {
                 'binary_data': msg.value(),
-                'layout_data': {},
-                'message_id': str(uuid.uuid4())
+                'message_id': str(uuid.uuid4()),
+                'error': f"Decoding error: {str(e)}"
             }
-        
-        # Assurer la présence des champs obligatoires
-        if 'message_id' not in message:
-            message['message_id'] = str(uuid.uuid4())
-        if 'layout_data' not in message:
-            message['layout_data'] = {}
-            
-        return message
 
     def _handle_kafka_error(self, error):
-        """Gère les erreurs Kafka de manière robuste"""
-        try:
-            # Utilisez la constante correcte pour la fin de partition
-            if error.code() == KafkaException._PARTITION_EOF:
-                logger.debug("Reached end of partition")
-            elif error.code() == KafkaError._PARTITION_EOF:  # Alternative
-                logger.debug("Reached end of partition")
-            else:
-                logger.error(f"Kafka error: {error.str()}")
-        except Exception as e:
-            logger.error(f"Error handling Kafka error: {str(e)}")
+        if error.code() == KafkaError.NO_ERROR:
+            return
+        elif error.code() == KafkaError._PARTITION_EOF:
+            logger.debug("Reached end of partition")
+        else:
+            logger.error(f"Kafka error: {error.str()}")
 
     def close(self):
-        self.consumer.close()
+        try:
+            self.consumer.close()
+            logger.info("Consumer closed successfully")
+        except Exception as e:
+            logger.error(f"Error closing consumer: {str(e)}")

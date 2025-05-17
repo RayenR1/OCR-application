@@ -7,7 +7,6 @@ class Settings(BaseSettings):
     OUTPUT_TOPIC: str = "output-ocr"
     LOG_LEVEL: str = "INFO"
     OCR_MIN_SIZE: int = 28
-    KAFKA_CONSUMER_TIMEOUT: int = 600000
     
     class Config:
         env_file = ".env"

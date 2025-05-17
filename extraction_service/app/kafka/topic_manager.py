@@ -1,41 +1,41 @@
+# app/kafka/topic_manager.py
+#github:@RayenR1 | linkedin :Rayen Jlassi
 from confluent_kafka.admin import AdminClient, NewTopic
-from app.config import KAFKA_BOOTSTRAP_SERVERS, INPUT_TOPIC, OUTPUT_TOPIC
-import logging
-
-logger = logging.getLogger(__name__)
+from app.config import KAFKA_BOOTSTRAP_SERVERS, ALL_TOPICS
 
 class KafkaTopicManager:
     def __init__(self):
-        self.admin_client = AdminClient({
-            'bootstrap.servers': KAFKA_BOOTSTRAP_SERVERS
-        })
+        self.admin_client = AdminClient({'bootstrap.servers': KAFKA_BOOTSTRAP_SERVERS})
 
-    def create_topic(self, topic_name, num_partitions=1, replication_factor=1):
-        existing_topics = self.list_topics()
-        if topic_name in existing_topics:
-            logger.info(f"Topic '{topic_name}' already exists")
-            return
+    def create_topics(self):
+        """Create Kafka topics if they don't already exist."""
+        # Get the list of existing topics
+        existing_topics = self.admin_client.list_topics(timeout=10).topics.keys()
 
-        new_topic = NewTopic(
-            topic=topic_name,
-            num_partitions=num_partitions,
-            replication_factor=replication_factor
-        )
-        try:
-            self.admin_client.create_topics([new_topic])
-            logger.info(f"Topic '{topic_name}' created successfully")
-        except Exception as e:
-            logger.error(f"Error creating topic '{topic_name}': {str(e)}")
-            raise
+        # Define topic configurations
+        new_topics = []
+        for topic in ALL_TOPICS:
+            if topic not in existing_topics:
+                # Create a NewTopic object for each topic
+                new_topic = NewTopic(
+                    topic=topic,
+                    num_partitions=1,  # Number of partitions
+                    replication_factor=1  # Replication factor
+                )
+                new_topics.append(new_topic)
 
-    def list_topics(self):
-        try:
-            cluster_metadata = self.admin_client.list_topics(timeout=10)
-            return set(cluster_metadata.topics.keys())
-        except Exception as e:
-            logger.error(f"Error listing topics: {str(e)}")
-            return set()
+        if new_topics:
+            # Create the topics
+            futures = self.admin_client.create_topics(new_topics)
+            for topic, future in futures.items():
+                try:
+                    future.result()  # Wait for the topic creation to complete
+                    print(f"Topic {topic} created successfully")
+                except Exception as e:
+                    print(f"Failed to create topic {topic}: {str(e)}")
+        else:
+            print("All topics already exist")
 
-    def create_all_topics(self):
-        for topic in [INPUT_TOPIC, OUTPUT_TOPIC]:
-            self.create_topic(topic)
+    def __del__(self):
+        """Clean up the AdminClient when the object is destroyed."""
+        self.admin_client = None
