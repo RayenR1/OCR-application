@@ -33,12 +33,12 @@ class KafkaProducer:
     def __init__(self):
         conf = {
             "bootstrap.servers": settings.KAFKA_BOOTSTRAP_SERVERS,
-            "client.id": "ocr-extraction-producer",
-            "message.max.bytes": 10000000,  # 10MB (taille maximale des messages)
+            "client.id": "text-structuring-producer",
+            "message.max.bytes": 10000000,  # 10MB
             "compression.type": "gzip",
-            "linger.ms": 5,  # Wait up to 5ms to batch messages
-            "retries": 3,  # Automatic retries for transient errors
-            "retry.backoff.ms": 100  # Delay between retries
+            "linger.ms": 5,
+            "retries": 3,
+            "retry.backoff.ms": 100
         }
         self.producer = Producer(conf)
 
@@ -52,15 +52,13 @@ class KafkaProducer:
     @retry_on_failure(max_attempts=3, base_delay=1.0, max_jitter=0.2)
     def send_result(self, result: Dict[str, Any]):
         """
-        Envoie le résultat OCR consolidé vers Kafka.
-        Contient l'image, le texte extrait et les positions des boîtes dans un seul JSON.
+        Envoie le résultat structuré vers Kafka.
+        Contient le texte structuré dans un JSON.
         """
         try:
-            # Sérialisation du résultat
             message_json = json.dumps(result, ensure_ascii=False).encode('utf-8')
             message_id = result.get('message_id', '')
             
-            # Envoi vers le topic de sortie
             self.producer.produce(
                 topic=settings.OUTPUT_TOPIC,
                 key=message_id.encode('utf-8'),
@@ -68,10 +66,9 @@ class KafkaProducer:
                 callback=self.delivery_report
             )
             
-            # Process callbacks to ensure delivery report is triggered
             self.producer.poll(0)
             
-            logger.info(f"Résultat OCR envoyé pour le message {message_id} au topic {settings.OUTPUT_TOPIC}")
+            logger.info(f"Résultat structuré envoyé pour le message {message_id} au topic {settings.OUTPUT_TOPIC}")
         except Exception as e:
             logger.error(f"Échec de l'envoi au topic {settings.OUTPUT_TOPIC} (message_id: {message_id}): {str(e)}", exc_info=True)
             raise
@@ -79,7 +76,7 @@ class KafkaProducer:
     def close(self):
         """Flush remaining messages and close the producer."""
         try:
-            self.producer.flush(timeout=10.0)  # Wait up to 10s to send remaining messages
+            self.producer.flush(timeout=10.0)
             logger.info("Producer closed successfully")
         except Exception as e:
             logger.error(f"Error closing producer: {str(e)}", exc_info=True)

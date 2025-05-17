@@ -12,10 +12,10 @@ class KafkaConsumer:
     def __init__(self):
         self.conf = {
             "bootstrap.servers": settings.KAFKA_BOOTSTRAP_SERVERS,
-            "group.id": "ocr-extraction-group",
+            "group.id": "text-structuring-group",
             "auto.offset.reset": "earliest",
             "enable.auto.commit": False,
-            "max.poll.interval.ms": 86400000  # Set to max allowed value (24 hours)
+            "max.poll.interval.ms": 86400000
         }
         self.consumer = Consumer(self.conf)
         self.consumer.subscribe([settings.INPUT_TOPIC])
@@ -36,16 +36,16 @@ class KafkaConsumer:
                 
                 try:
                     message_value = self._decode_message(msg)
-                    logger.info(f"Processing full image for message: {message_value.get('message_id')}")
+                    logger.info(f"Processing OCR output for message: {message_value.get('message_id')}")
                     
-                    # Process the entire image and get consolidated result
+                    # Process the message exactly once
                     result = processing_callback(message_value, producer=producer)
                     
                     if result.get('status') == 'success':
                         self.consumer.commit(asynchronous=False)
-                        logger.info(f"Successfully processed full image for message {message_value.get('message_id')}")
+                        logger.info(f"Successfully structured text for message {message_value.get('message_id')}")
                     else:
-                        logger.error(f"Failed to process full image for message {message_value.get('message_id')}")
+                        logger.error(f"Failed to structure text for message {message_value.get('message_id')}")
                         
                 except Exception as e:
                     logger.error(f"Message processing failed: {str(e)}", exc_info=True)
@@ -66,7 +66,7 @@ class KafkaConsumer:
         except Exception as e:
             logger.error(f"Message decoding failed: {str(e)}")
             return {
-                'binary_data': msg.value(),
+                'data': msg.value(),
                 'message_id': str(uuid.uuid4()),
                 'error': f"Decoding error: {str(e)}"
             }
