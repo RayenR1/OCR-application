@@ -1,2 +1,2 @@
-echo "data/*.rar" >> .gitignore
-git add .gitignore
+postgres-data/
+mlflow-data/
