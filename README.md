@@ -61,22 +61,27 @@ EyeQ/
 ```bash
 git clone https://github.com/RayenR1/EyeQ.git
 cd EyeQ
-docker-compose up -d --build
+docker build -t myproject/base:3.10 -f Dockerfile.base .
+docker build -t myproject/torch-base:3.10 -f Dockerfile.torch-base .
+docker-compose up --build
+
 ```
 
 ## 🖥 Usage
 Example API call in Python:
 ```python
-import requests
-response = requests.post("http://localhost:8000/analyze", files={'file': open('doc.jpg','rb')})
-print(response.json())
+##open a termina
+curl -X POST -F "path to ur image" http://8000:8000/classify
+
 ```
 
 ## 📊 Performance
 | Metric                 | Value  |
 |------------------------|--------|
 | YOLOv11 Accuracy      | 95.0%  |
-| Average Latency       | -.-s   |
+| Average Latency       | 1.0s   |
+
+......
 
 
 ## 👨💻 Contributor
