@@ -1,0 +1,138 @@
+<div class="surface-card p-4 shadow-2 border-round w-full flex justify-content-center">
+  <p-steps [activeIndex]="active" [model]="items2" class="w-full" />
+</div>
+
+<div class="card">
+  <p-toast />
+  <div *ngIf="etape1">
+    <p-fileupload
+      name="myfile[]"
+      url="http://127.0.0.1:8000/send-message"
+      [multiple]="true"
+      accept="image/*"
+      maxFileSize="10000000000"
+      (onUpload)="onTemplatedUpload()"
+      (onSelect)="onSelectedFiles($event)"
+    >
+      <ng-template #header let-files let-chooseCallback="chooseCallback" let-clearCallback="clearCallback" let-uploadCallback="uploadCallback">
+        <div class="flex flex-wrap justify-between items-center flex-1 gap-4">
+          <div class="flex gap-2">
+            <p-button (onClick)="choose($event, chooseCallback)" icon="pi pi-images" [rounded]="true" [outlined]="true" />
+            <p-button
+              (onClick)="uploadEvent(uploadCallback)"
+              icon="pi pi-cloud-upload"
+              [rounded]="true"
+              [outlined]="true"
+              severity="success"
+              [disabled]="!files || files.length === 0"
+            />
+            <p-button
+              (onClick)="clearCallback()"
+              icon="pi pi-times"
+              [rounded]="true"
+              [outlined]="true"
+              severity="danger"
+              [disabled]="!files || files.length === 0"
+            />
+          </div>
+          <p-progressbar
+            [value]="totalSizePercent"
+            [showValue]="false"
+            class="w-full"
+            styleClass="md:w-20rem h-1 w-full md:ml-auto"
+          >
+            <span class="whitespace-nowrap">{{ totalSize }}B / 1Mb</span>
+          </p-progressbar>
+        </div>
+      </ng-template>
+      <ng-template
+        #content
+        let-files
+        let-uploadedFiles="uploadedFiles"
+        let-removeFileCallback="removeFileCallback"
+        let-removeUploadedFileCallback="removeUploadedFileCallback"
+      >
+        <div class="flex flex-col gap-8 pt-4">
+          <div *ngIf="files?.length > 0">
+            <h5>Pending</h5>
+            <div class="flex flex-wrap gap-4">
+              <div
+                *ngFor="let file of files; let i = index"
+                class="p-8 rounded-border flex flex-col border border-surface items-center gap-4"
+              >
+                <div>
+                  <img role="presentation" [alt]="file.name" [src]="file.objectURL" width="100" height="50" />
+                </div>
+                <span class="font-semibold text-ellipsis max-w-60 whitespace-nowrap overflow-hidden">{{ file.name }}</span>
+                <div>{{ formatSize(file.size) }}</div>
+                <p-badge value="Pending" severity="warn" />
+                <p-button
+                  icon="pi pi-times"
+                  (click)="onRemoveTemplatingFile($event, file, removeFileCallback, i)"
+                  [outlined]="true"
+                  [rounded]="true"
+                  severity="danger"
+                />
+              </div>
+            </div>
+          </div>
+          <div *ngIf="uploadedFiles?.length > 0">
+            <h5>Completed</h5>
+            <div class="flex flex-wrap gap-4">
+              <div
+                *ngFor="let file of uploadedFiles; let i = index"
+                class="card m-0 px-12 flex flex-col border border-surface items-center gap-4"
+              >
+                <div>
+                  <img role="presentation" [alt]="file.name" [src]="file.objectURL" width="100" height="50" />
+                </div>
+                <span class="font-semibold text-ellipsis max-w-60 whitespace-nowrap overflow-hidden">{{ file.name }}</span>
+                <div>{{ formatSize(file.size) }}</div>
+                <p-badge value="Completed" class="mt-4" severity="success" />
+                <p-button
+                  icon="pi pi-times"
+                  (onClick)="onRemoveUploadedFile(i)"
+                  [outlined]="true"
+                  [rounded]="true"
+                  severity="danger"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+      <ng-template #file></ng-template>
+      <ng-template #empty>
+        <div class="flex items-center justify-center flex-col">
+          <i class="pi pi-cloud-upload !border-2 !rounded-full !p-8 !text-4xl !text-muted-color"></i>
+          <p class="mt-6 mb-0">Drag and drop files to here to upload.</p>
+        </div>
+      </ng-template>
+    </p-fileupload>
+  </div>
+
+  
+
+  <p-dialog header="Extraction processing" [modal]="true" [(visible)]="etape2" [style]="{ width: '25rem' }">
+    <div *ngIf="etape2">
+      <div class="card">
+        <p-progressbar mode="indeterminate" [style]="{'height': '6px'}" />
+      </div>
+    </div>
+  </p-dialog>
+  
+  <!-- Editor for responses -->
+  <div class="card mt-4"  *ngIf="etape3" >
+      <h3 class="text-lg font-medium mb-2 p-4">Extracted Text:</h3>
+      
+      <div class="card flex justify-center">
+        <p-toast />
+        <p-splitbutton label="Save" (onClick)="save()" [model]="items" />
+      </div>
+      <p-editor 
+          [(ngModel)]="backendResponse" 
+          [style]="{height: '320px'}"
+          placeholder="Enter or edit text here...">
+      </p-editor>
+  </div>
+</div>

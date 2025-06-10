@@ -1,6 +1,52 @@
 version: '3.8'
 
 services:
+  keycloak:
+    image: quay.io/keycloak/keycloak:latest
+    container_name: keycloak
+    command: ["start-dev", "--import-realm"]
+    environment:
+      - KEYCLOAK_ADMIN=admin
+      - KEYCLOAK_ADMIN_PASSWORD=20809890
+      - KC_DB=postgres
+      - KC_DB_URL=jdbc:postgresql://keycloak-db:5432/keycloak?sslmode=disable
+      - KC_DB_USERNAME=keycloak
+      - KC_DB_PASSWORD=20809890
+    volumes:
+      - ./realm-export.json:/opt/keycloak/data/import/realm-export.json
+      - ./mon-theme-keycloak/theme:/opt/keycloak/themes
+    ports:
+      - "8085:8080"
+    depends_on:
+      keycloak-db:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health/ready"]
+      interval: 15s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+    networks:
+      - app-network
+
+  keycloak-db:
+    image: postgres:16
+    container_name: keycloak-db
+    environment:
+      - POSTGRES_DB=keycloak
+      - POSTGRES_USER=keycloak
+      - POSTGRES_PASSWORD=20809890
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U keycloak -d keycloak"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 60s
+    networks:
+      - app-network
+
   zookeeper:
     image: wurstmeister/zookeeper:latest
     container_name: zookeeper
@@ -126,6 +172,28 @@ services:
   #   networks:
   #     - kafka-net
 
+
+  # structuring_service:
+  #   image: myproject/structuring_service:latest
+  #   build:
+  #     context: ./structuring_service
+  #     dockerfile: Dockerfile
+  #   container_name: structuring_service
+  #   depends_on:
+  #     kafka:
+  #       condition: service_healthy
+  #     extraction_service:
+  #       condition: service_started
+  #   ports:
+  #     - "8004:8004"
+  #   environment:
+  #     KAFKA_BOOTSTRAP_SERVERS: kafka:9093
+  #   networks:
+  #     - kafka-net
+
+
 networks:
+  app-network:
+    driver: bridge
   kafka-net:
     driver: bridge

@@ -1,0 +1,17 @@
+transformers 
+torch 
+torchvision
+opencv-python 
+pandas 
+rapidfuzz
+pandas 
+fuzzywuzzy 
+python-Levenshtein
+easyocr
+fastapi
+uvicorn
+matplotlib
+pillow
+python-multipart
+statsmodels
+scikit-learn

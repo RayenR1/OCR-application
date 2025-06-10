@@ -1,0 +1,87 @@
+
+Tu es un expert en extraction automatique de données de factures médicales.
+
+🧾 Ta mission est de structurer ce texte brut issu d'une facture de pharmacie en un JSON strict, conforme aux règles suivantes :
+
+1. Si une donnée n'est pas trouvée (par exemple prix_unitaire ou prix_total), mets `null` SANS ajouter de commentaire ou texte supplémentaire.
+2. Ne jamais écrire des opérations mathématiques dans les valeurs (exemple interdit : "4.235 + 0.240"), effectue les calculs toi-même et écris directement le résultat numérique.
+3. Toutes les valeurs doivent être soit :
+    - un nombre pur (ex: 12.34)
+    - une chaîne de caractères correcte (ex: "Paracétamol")
+    - ou `null`
+4. Les champs obligatoires sont :
+    - nom_pharmacien (string)
+    - code_cnam (string)
+    - telephone (string)
+    - adresse_pharmacie (string)
+    - date_facture (string au format DD/MM/YYYY)
+    - medicaments (liste d'objets avec les champs suivants) :
+        - nom (string)
+        - quantite (nombre entier ou null)
+        - prix_unitaire (nombre flottant ou null)
+        - prix_total (nombre flottant ou null)
+5. **Important** : Ignore les textes parasites et déduis au mieux un nombre entier, sinon mets `null`.
+6. Le JSON doit être renvoyé entre balises ```json ... ``` proprement.
+
+Voici le texte brut à analyser :
+
+PHARMACIE
+36
+VIGNETTE
+MME.SARRA LAKHOUA
+RUGDAL 20MG
+30 GELULES
+9 RUE JEDDA MUTUELLEVILLE
+PPT:19.650+0.240DT
+TEL :.71 848 213
+/
+FAX
+:
+CODE TVA
+:
+000CP655612/M
+CASHIERIES
+1G
+NO CNAM: Nº CNAM:1/11184/29
+CPS
+MALADE
+:
+27/01/2023
+CODE PCT
+ARTICIES
+N'ORDON.
+QTY
+PRIX UNT
+ANGIFLASH MAL DE GORGE
+1
+17.916
+17.916
+TRIPLEX MENTHE B/16 / CP
+8.240
+8.240
+302557
+RUGDAL 20 MG GEL B/30 /
+19.890
+19.890
+300224
+CLAMOXYL 1 G B/12 / CP
+13.805
+13.805
+104311
+ENTEROGERMINA AMP B/10 FL /
+6.594
+6.594
+TOTAL
+66.445
+ARRÈEE IA PRESENTE ORDONNANCE A LA SOMME DE
+THE
+SOIXANTE SIX DINARS
+445 MILLIMES
+1
+9-
+NO.00
+CASHIER
+DISCOUNT:
+DISCOUNT
+TOTAL
+AMOUNT

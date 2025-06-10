@@ -1,0 +1,31 @@
+:host {
+    display: block;
+    width: 100%;
+    min-height: 100vh;
+  }
+  
+  .card {
+    overflow: hidden;
+    padding: 1rem;
+  }
+  
+  iframe {
+    max-width: 100%;
+    border: none;
+    object-fit: contain;
+  }
+  
+  @media (min-width: 768px) {
+    .card {
+      padding: 2rem;
+    }
+    iframe {
+      height: 85vh; /* Slightly larger height for medium screens */
+    }
+  }
+  
+  @media (min-width: 1200px) {
+    iframe {
+      height: 90vh; /* Maximum height for large screens */
+    }
+  }

@@ -1,0 +1,84 @@
+<footer class="surface-card shadow-2 w-full flex justify-center">
+    <div class="w-full max-w-7xl px-6 lg:px-12 py-6">
+        <div class="flex flex-wrap justify-between align-items-start gap-8">
+
+            <!-- Sections de liens -->
+            <div class="flex flex-wrap justify-between gap-x-16" style="max-width: 600px">
+               
+                <!-- Solutions -->
+                <div>
+                    <h3 class="font-bold mb-3 text-900">Solutions</h3>
+                    <ul class="list-none p-0">
+                        <li><a routerLink="/real-time-detection" class="text-600 hover:text-primary">Real-Time Detection</a></li>
+                        <li><a routerLink="/analytics" class="text-600 hover:text-primary">Data Analytics</a></li>
+                        <li><a routerLink="/integration" class="text-600 hover:text-primary">System Integration</a></li>
+                        <li><a routerLink="/custom-solutions" class="text-600 hover:text-primary">Custom Solutions</a></li>
+                    </ul>
+                </div>
+
+                <!-- Resources -->
+                <div>
+                    <h3 class="font-bold mb-3 text-900">Resources</h3>
+                    <ul class="list-none p-0">
+                        <li><a routerLink="/documentation" class="text-600 hover:text-primary">Documentation</a></li>
+                        <li><a routerLink="/case-studies" class="text-600 hover:text-primary">Case Studies</a></li>
+                        <li><a routerLink="/blog" class="text-600 hover:text-primary">Blog</a></li>
+                        <li><a routerLink="/faq" class="text-600 hover:text-primary">FAQ</a></li>
+                    </ul>
+                </div>
+
+                <!-- Company -->
+                <div>
+                    <h3 class="font-bold mb-3 text-900">Company</h3>
+                    <ul class="list-none p-0">
+                        <li><a routerLink="/about" class="text-600 hover:text-primary">About Us</a></li>
+                        <li><a routerLink="/careers" class="text-600 hover:text-primary">Careers</a></li>
+                        <li><a routerLink="/contact" class="text-600 hover:text-primary">Contact Us</a></li>
+                        <li><a routerLink="/partners" class="text-600 hover:text-primary">Partners</a></li>
+                    </ul>
+                </div>
+
+                <!-- Legal -->
+                <div>
+                    <h3 class="font-bold mb-3 text-900">Legal</h3>
+                    <ul class="list-none p-0">
+                        <li><a routerLink="/privacy-policy" class="text-600 hover:text-primary">Privacy Policy</a></li>
+                        <li><a routerLink="/terms" class="text-600 hover:text-primary">Terms of Service</a></li>
+                        <li><a routerLink="/refund-policy" class="text-600 hover:text-primary">Refund Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Newsletter (Aligné à droite) -->
+            <div class="ml-auto w-auto">
+                <h3 class="font-bold mb-3 text-900">Subscribe to our Newsletter</h3>
+                <p class="text-600 mb-3">Stay updated with the latest advancements in license plate recognition technology.</p>
+                <div class="flex">
+                    <input type="email" pInputText placeholder="Enter your email"
+                        class="p-2 border-round-left w-full max-w-sm" [(ngModel)]="email" />
+                    <button pButton pRipple class="bg-primary text-white px-4 py-2 border-round-right" 
+                        (click)="subscribe()">Subscribe</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Bottom -->
+        <div class="border-top-1 surface-border mt-6 pt-4 flex justify-between align-items-center">
+            <p class="text-600">&copy; 2025 EyeQ, Inc. All rights reserved.</p>
+            <div class="ml-auto w-auto flex gap-4">
+                <a href="https://www.facebook.com" class="text-500 hover:text-primary">
+                    <i class="pi pi-facebook text-xl"></i>
+                </a>
+                <a href="https://www.x.com" class="text-500 hover:text-primary">
+                    <i class="pi pi-twitter text-xl"></i>
+                </a>
+                <a href="https://www.instagram.com" class="text-500 hover:text-primary">
+                    <i class="pi pi-instagram text-xl"></i>
+                </a>
+                <a href="https://www.youtube.com" class="text-500 hover:text-primary">
+                    <i class="pi pi-youtube text-xl"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</footer>

@@ -1,4 +1,4 @@
-easyocr==1.7.1 ##
+easyocr==1.7.2 ##
 transformers ##
-qwen-vl-utils==0.0.4 ##
-accelerate
+qwen-vl-utils==0.0.11 ##
+accelerate==1.6.0##

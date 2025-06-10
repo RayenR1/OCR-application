@@ -1,0 +1,75 @@
+<div class="card">
+    <p-toast />
+    
+    <!-- Chat Header -->
+    <div class="flex align-items-center justify-content-between p-3 border-bottom-1 surface-border">
+        <div class="flex align-items-center gap-2">
+            <i class="pi pi-comments text-xl"></i>
+            <span class="font-bold text-lg">Chat Assistant</span>
+        </div>
+        <p-button 
+            icon="pi pi-trash" 
+            severity="danger" 
+            [rounded]="true" 
+            [outlined]="true"
+            (click)="clearChat()"
+            tooltip="Clear conversation">
+        </p-button>
+    </div>
+  
+    <!-- Chat Messages -->
+    <div class="p-3 overflow-y-auto" style="height: 400px;">
+        <div *ngFor="let message of messages" class="mb-3">
+            <!-- Bot Message -->
+            <div *ngIf="message.sender === 'bot'" class="flex gap-2">
+                <div class="flex align-items-center justify-content-center p-2 border-circle bg-blue-100 w-2rem h-2rem">
+                    <i class="pi pi-robot"></i>
+                </div>
+                <div class="p-3 border-round bg-blue-50 max-w-20rem">
+                    <div>{{message.text}}</div>
+                    <div class="text-xs text-gray-500 mt-1">
+                        {{message.timestamp | date:'shortTime'}}
+                    </div>
+                </div>
+            </div>
+  
+            <!-- User Message -->
+            <div *ngIf="message.sender === 'user'" class="flex justify-content-end gap-2">
+                <div class="p-3 border-round bg-green-50 max-w-20rem">
+                    <div>{{message.text}}</div>
+                    <div class="text-xs text-gray-500 mt-1 text-right">
+                        {{message.timestamp | date:'shortTime'}}
+                    </div>
+                </div>
+                <div class="flex align-items-center justify-content-center p-2 border-circle bg-green-100 w-2rem h-2rem">
+                    <i class="pi pi-user"></i>
+                </div>
+            </div>
+        </div>
+  
+        <!-- Loading Indicator -->
+        <div *ngIf="isLoading" class="flex align-items-center gap-2 p-3">
+            <p-progressSpinner styleClass="w-1rem h-1rem"></p-progressSpinner>
+            <span>Assistant is typing...</span>
+        </div>
+    </div>
+  
+    <!-- Input Area -->
+    <div class="p-3 border-top-1 surface-border">
+        <div class="flex gap-2">
+            <input 
+                type="text" 
+                pInputText 
+                [(ngModel)]="userInput" 
+                placeholder="Type your message..." 
+                (keyup.enter)="sendMessage()"
+                class="flex-1">
+            <p-button 
+                icon="pi pi-send" 
+                (click)="sendMessage()"
+                [disabled]="!userInput || isLoading"
+                severity="primary">
+            </p-button>
+        </div>
+    </div>
+</div>

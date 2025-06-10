@@ -1,0 +1,66 @@
+<div class="card">
+    <p-megamenu 
+        [model]="items" 
+        [style]="{ 'border-radius': '3rem', display: 'flex' }" 
+        styleClass="p-4 bg-surface-0 dark:bg-surface-900 flex align-items-center p-mx-4 p-my-3 p-shadow-2">
+        
+        <!-- Début du MegaMenu -->
+        <ng-template #start>
+            <div class="flex align-items-center">
+                <img src="/EyeQapp.png" alt="EyeQapp Logo" width="35" height="40">
+            </div>
+        </ng-template>
+
+        <ng-template #item let-item>
+            <!-- Élément racine -->
+            <a *ngIf="item.root" pRipple class="flex align-items-center gap-2 p-3 border-round-lg font-bold text-lg cursor-pointer" [routerLink]="item.link" [ngClass]="{ 'text-primary': isActiveRoute(item.link) }">
+                <i [ngClass]="item.icon"></i>
+                <span>{{ item.label }}</span>
+            </a>
+
+            <!-- Élément avec icône -->
+            <a *ngIf="!item.root && !item.image" class="flex align-items-center p-3 gap-3 cursor-pointer border-round-lg" [routerLink]="item.link" [ngClass]="{ 'text-primary': isActiveRoute2(item.link) }">
+                <span class="flex align-items-center justify-content-center border-circle bg-primary text-white w-3rem h-3rem">
+                    <i [ngClass]="item.icon + ' text-lg'"></i>
+                </span>
+                <div class="flex flex-column">
+                    <span class="font-medium text-lg text-surface-900 dark:text-surface-0">{{ item.label }}</span>
+                    <span class="text-sm text-surface-500">{{ item.subtext }}</span>
+                </div>
+            </a>
+
+            <!-- Élément avec image -->
+            <div *ngIf="item.image" class="flex flex-column gap-3" [routerLink]="item.link">
+                <img [src]="item.image" alt="megamenu-demo" class="w-full border-round-lg shadow-2" />
+                <span class="text-sm text-surface-700">{{ item.subtext }}</span>
+                <p-button [label]="item.label" [outlined]="true" class="w-full"></p-button>
+            </div>
+        </ng-template>
+
+        <ng-template #end>
+            <div class="flex align-items-center gap-3"> <!-- Espacement entre les boutons -->
+                <!-- Bouton pour changer de thème -->
+                <p-button 
+                    icon="pi" 
+                    [icon]="isDarkTheme ? 'pi pi-sun' : 'pi pi-moon'" 
+                    class="p-button-rounded p-button-text" 
+                    (click)="toggleTheme()">
+                </p-button>
+
+                <!-- Afficher Avatar ou Bouton de connexion -->
+                <ng-container *ngIf="isLoggedIn; else loginButton">
+
+                    <!-- Bouton de déconnexion -->
+                    <p-button  icon="pi pi-sign-out" class="p-button-rounded p-button-text" (click)="logout()"></p-button>
+                    <!-- Avatar avec taille augmentée -->
+                    <p-avatar (click)="manageAccount()" image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png" shape="circle" size="large" [ngClass]="'cursor-pointer'"></p-avatar>
+
+                    
+                </ng-container>
+                <ng-template #loginButton>
+                    <p-button label="Login" icon="pi pi-sign-in" class="p-button-rounded p-button-text" (click)="login()"></p-button>
+                </ng-template>
+            </div>
+        </ng-template>
+    </p-megamenu>
+</div>

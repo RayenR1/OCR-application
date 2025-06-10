@@ -3,4 +3,4 @@ FROM myproject/base:3.10
 
 WORKDIR /app
 
-RUN pip install --no-cache-dir torch==2.4.1 torchvision==0.19.1
+RUN pip install --no-cache-dir torch==2.5.1+cu121 torchvision==0.20.1+cu121

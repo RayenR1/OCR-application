@@ -1,0 +1,57 @@
+[
+  {
+    "medicament_facture":"angiflash mal de gorge",
+    "match_base":null,
+    "score_match":86,
+    "quantite":1.0,
+    "prix_unitaire_facture":17.916,
+    "prix_total_facture":17.916,
+    "prix_base":null,
+    "remboursement_unitaire":0.0,
+    "remboursement_total":0.0
+  },
+  {
+    "medicament_facture":"triplex menthe b\/16 \/ cp",
+    "match_base":null,
+    "score_match":86,
+    "quantite":8.24,
+    "prix_unitaire_facture":null,
+    "prix_total_facture":8.24,
+    "prix_base":null,
+    "remboursement_unitaire":0.0,
+    "remboursement_total":0.0
+  },
+  {
+    "medicament_facture":"rugdal 20 mg gel b\/30 \/",
+    "match_base":"RUGDAL",
+    "score_match":90,
+    "quantite":19.89,
+    "prix_unitaire_facture":null,
+    "prix_total_facture":19.89,
+    "prix_base":6.01,
+    "remboursement_unitaire":4.162,
+    "remboursement_total":82.78218
+  },
+  {
+    "medicament_facture":"clamoxyl 1 g b\/12 \/ cp",
+    "match_base":"CLAMOXYL",
+    "score_match":90,
+    "quantite":13.805,
+    "prix_unitaire_facture":null,
+    "prix_total_facture":13.805,
+    "prix_base":2.835,
+    "remboursement_unitaire":1.785,
+    "remboursement_total":24.641925
+  },
+  {
+    "medicament_facture":"enterogermina amp b\/10 fl \/",
+    "match_base":null,
+    "score_match":86,
+    "quantite":6.594,
+    "prix_unitaire_facture":null,
+    "prix_total_facture":6.594,
+    "prix_base":null,
+    "remboursement_unitaire":0.0,
+    "remboursement_total":0.0
+  }
+]

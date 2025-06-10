@@ -1,0 +1,19 @@
+<div class="flex flex-column min-h-screen">
+  
+    <!-- Header FIXE -->
+    <header class="app-header surface-ground py-3 shadow-2">
+      <app-nav-bar></app-nav-bar>
+    </header>
+  
+    <!-- Contenu principal qui passe derrière la navbar -->
+    <main class="app-content flex-1 p-4 surface-card">
+      <router-outlet></router-outlet>
+    </main>
+  
+    <!-- Footer -->
+    <footer class="surface-ground py-3 border-top-1 border-300 text-center">
+      <app-footer></app-footer>
+    </footer>
+  
+  </div>
+  

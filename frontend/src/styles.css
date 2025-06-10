@@ -1,0 +1,22 @@
+/* You can add global styles to this file, and also import other style files */
+@import "../node_modules/primeflex/primeflex.css";
+@import "../node_modules/primeflex/primeflex.min.css";
+
+@import "../node_modules/primeicons/primeicons.css";
+
+#map {
+    height: 500px; /* Hauteur de la carte */
+    width: 100%;   /* Largeur de la carte */
+    margin-top: 20px; /* Espacement par rapport aux autres éléments */
+  }
+
+/* @tailwind base;
+@tailwind components;
+@tailwind utilities; */
+
+/* Rend le texte du placeholder blanc */
+/* Mode clair par défaut (texte sombre) */
+.p-editor-container .ql-editor.ql-blank::before {
+  color: #6c757d !important; /* Gris foncé */
+}
+

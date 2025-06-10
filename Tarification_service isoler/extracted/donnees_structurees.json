@@ -1,0 +1,40 @@
+{
+    "nom_pharmacien": "MME.SARRA LAKHOUA",
+    "code_cnam": null,
+    "telephone": "71 848 213",
+    "adresse_pharmacie": "9 RUE JEDDA MUTUELLEVILLE",
+    "date_facture": "27/01/2023",
+    "medicaments": [
+        {
+            "nom": "ANGIFLASH MAL DE GORGE",
+            "quantite": 1,
+            "prix_unitaire": 17.916,
+            "prix_total": 17.916
+        },
+        {
+            "nom": "TRIPLEX MENTHE B/16 / CP",
+            "quantite": 8.24,
+            "prix_unitaire": null,
+            "prix_total": 8.24
+        },
+        {
+            "nom": "RUGDAL 20 MG GEL B/30 /",
+            "quantite": 19.89,
+            "prix_unitaire": null,
+            "prix_total": 19.89
+        },
+        {
+            "nom": "CLAMOXYL 1 G B/12 / CP",
+            "quantite": 13.805,
+            "prix_unitaire": null,
+            "prix_total": 13.805
+        },
+        {
+            "nom": "ENTEROGERMINA AMP B/10 FL /",
+            "quantite": 6.594,
+            "prix_unitaire": null,
+            "prix_total": 6.594
+        }
+    ],
+    "total": 66.445
+}

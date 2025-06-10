@@ -1,0 +1,72 @@
+<div class="card p-4">
+    <h2 class="text-2xl font-bold text-surface-900 dark:text-surface-0 mb-4">Contact Us</h2>
+    <form (ngSubmit)="onSubmit()" #contactForm="ngForm">
+      <!-- Name -->
+      <div class="mb-4">
+        <label for="name" class="block text-surface-700 font-semibold mb-2">Your Name</label>
+        <input
+          pInputText
+          id="name"
+          [(ngModel)]="contact.name"
+          name="name"
+          required
+          class="w-full"
+          placeholder="Enter your name"
+        />
+        <div *ngIf="contactForm.submitted && !contactForm.controls['name'].valid" class="text-red-500 text-sm mt-1">
+          Name is required.
+        </div>
+      </div>
+  
+      <!-- Email -->
+      <div class="mb-4">
+        <label for="email" class="block text-surface-700 font-semibold mb-2">Your Email</label>
+        <input
+          pInputText
+          type="email"
+          id="email"
+          [(ngModel)]="contact.email"
+          name="email"
+          required
+          email
+          class="w-full"
+          placeholder="Enter your email"
+        />
+        <div *ngIf="contactForm.submitted && !contactForm.controls['email'].valid" class="text-red-500 text-sm mt-1">
+          Valid email is required.
+        </div>
+      </div>
+  
+      <!-- Message -->
+      <div class="mb-4">
+        <label for="message" class="block text-surface-700 font-semibold mb-2">Your Message</label>
+        <textarea
+          pInputTextarea
+          id="message"
+          [(ngModel)]="contact.message"
+          name="message"
+          required
+          rows="4"
+          class="w-full"
+          placeholder="Enter your message"
+        ></textarea>
+        <div *ngIf="contactForm.submitted && !contactForm.controls['message'].valid" class="text-red-500 text-sm mt-1">
+          Message is required.
+        </div>
+      </div>
+  
+      <!-- Submit Button -->
+      <p-button
+        type="submit"
+        label="Send Message"
+        icon="pi pi-send"
+        class="w-full"
+        [outlined]="true"
+      ></p-button>
+  
+      <!-- Success Message -->
+      <div *ngIf="formSubmitted" class="text-green-600 mt-4">
+        Thank you! Your message has been sent.
+      </div>
+    </form>
+  </div>

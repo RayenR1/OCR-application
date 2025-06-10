@@ -66,6 +66,11 @@ docker build -t myproject/torch-base:3.10 -f Dockerfile.torch-base .
 docker-compose up --build
 
 ```
+## local test with orchestrator 
+```bash
+conda activate pids 
+python -u "C:\Users\jlassi\Desktop\EyeQ_app\OrchesttrationScript.py"
+```
 
 ## 🖥 Usage
 Example API call in Python:

@@ -1,0 +1,38 @@
+/* Custom styles for text colors and hover effects */
+.text-50 {
+    color: #f3f4f6; /* Light gray for headings */
+}
+
+.text-200 {
+    color: #d1d5db; /* Lighter gray for links and text */
+}
+
+.text-400 {
+    color: #9ca3af; /* Medium gray for social icons */
+}
+
+.hover-text-primary:hover {
+    color: #2563eb; /* PrimeNG primary blue on hover */
+}
+
+.p-text-xl {
+    font-size: 1.25rem; /* Match PrimeNG's text-xl */
+}
+
+.hover-bg-primary-600:hover {
+    background-color: #1d4ed8 !important; /* Darker primary blue on hover */
+}
+
+/* Remove default underline from links */
+a {
+    text-decoration: none;
+}
+
+/* Ensure input field has a consistent look */
+input[pInputText] {
+    border-radius: 4px 0 0 4px;
+}
+
+button[pButton] {
+    border-radius: 0 4px 4px 0;
+}
