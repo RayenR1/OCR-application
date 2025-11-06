@@ -1,6 +1,3 @@
-# 🚀 EyeQ - Advanced Medical Document Processing Platform
-![EyeQ Logo](./Capture_d_écran_2025-02-01_162905-removebg-preview.png)
-
 ## 📌 Table of Contents
 - [Introduction](#-introduction)
 - [Features](#-features)
