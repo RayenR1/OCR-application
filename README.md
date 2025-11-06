@@ -94,26 +94,4 @@ Developed by **Rayen Jlassi**
 🔗 [GitHub @RayenR1](https://github.com/RayenR1)  
 🔗 [LinkedIn](https://www.linkedin.com/in/rayen-jlassi-5867612bb/)  
 
-**Skander kammoun**  
-🔗 [GitHub @]()  
-🔗 [LinkedIn](https://www.linkedin.com/in/skander-kammoun-467257267/)  
-
-**Mariem Mhamdi**  
-🔗 [GitHub @]()  
-🔗 [LinkedIn](https://www.linkedin.com/in/mariem-mhamdi-bb027a254/)  
-
-**ines kammoun**  
-🔗 [GitHub @]()  
-🔗 [LinkedIn](https://www.linkedin.com/in/ineskammoun/)
-  
-**Yassine ben Maktouf**  
-🔗 [GitHub @YassineBenMaktouf](https://github.com/YassineBenMaktouf)  
-🔗 [LinkedIn](https://www.linkedin.com/in/yassine-ben-maktouf/)  
-
-
-**Souhail ltifi**  
-🔗 [GitHub @]()  
-🔗 [LinkedIn]() 
-## 📜 License
-© 2025 EyeQ - Esprit School of Engineering - Doxaria
 
